@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Permissions } from 'discourse-api-documentationlib';
+import { Permissions } from 'discourse';
 
 const permissions: Permissions = {
   everyone: 1,

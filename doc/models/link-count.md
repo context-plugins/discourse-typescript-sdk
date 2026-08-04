@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { LinkCount } from 'discourse-api-documentationlib';
+import { LinkCount } from 'discourse';
 
 const linkCount: LinkCount = {
   url: 'url4',

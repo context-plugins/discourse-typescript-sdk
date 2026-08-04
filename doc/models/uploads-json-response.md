@@ -29,7 +29,7 @@
 ## Example
 
 ```ts
-import { UploadsJsonResponse } from 'discourse-api-documentationlib';
+import { UploadsJsonResponse } from 'discourse';
 
 const uploadsJsonResponse: UploadsJsonResponse = {
   id: 146,

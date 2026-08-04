@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { PostsJsonRequest2 } from 'discourse-api-documentationlib';
+import { PostsJsonRequest2 } from 'discourse';
 
 const postsJsonRequest2: PostsJsonRequest2 = {
   forceDestroy: true,

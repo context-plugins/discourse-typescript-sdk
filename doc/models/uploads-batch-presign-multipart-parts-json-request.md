@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsBatchPresignMultipartPartsJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UploadsBatchPresignMultipartPartsJsonRequest } from 'discourse';
 
 const uploadsBatchPresignMultipartPartsJsonRequest: UploadsBatchPresignMultipartPartsJsonRequest = {
   partNumbers: [

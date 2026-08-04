@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { Extras3 } from 'discourse-api-documentationlib';
+import { Extras3 } from 'discourse';
 
 const extras3: Extras3 = {
   categories: [

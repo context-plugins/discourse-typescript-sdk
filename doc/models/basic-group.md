@@ -42,7 +42,7 @@
 ## Example
 
 ```ts
-import { BasicGroup } from 'discourse-api-documentationlib';
+import { BasicGroup } from 'discourse';
 
 const basicGroup: BasicGroup = {
   id: 116,

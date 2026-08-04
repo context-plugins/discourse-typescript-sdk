@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { TopTag } from 'discourse-api-documentationlib';
+import { TopTag } from 'discourse';
 
 const topTag: TopTag = {
   id: 60,

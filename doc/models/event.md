@@ -57,7 +57,7 @@
 ## Example
 
 ```ts
-import { Event, Status } from 'discourse-api-documentationlib';
+import { Event, Status } from 'discourse';
 
 const event: Event = {
   id: 242,

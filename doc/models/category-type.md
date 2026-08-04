@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { CategoryType } from 'discourse-api-documentationlib';
+import { CategoryType } from 'discourse';
 
 const categoryType: CategoryType = {
   id: 'id6',

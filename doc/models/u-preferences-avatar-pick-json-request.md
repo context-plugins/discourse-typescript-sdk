@@ -15,10 +15,7 @@
 ## Example
 
 ```ts
-import {
-  Type1,
-  UPreferencesAvatarPickJsonRequest,
-} from 'discourse-api-documentationlib';
+import { Type1, UPreferencesAvatarPickJsonRequest } from 'discourse';
 
 const uPreferencesAvatarPickJsonRequest: UPreferencesAvatarPickJsonRequest = {
   uploadId: 94,

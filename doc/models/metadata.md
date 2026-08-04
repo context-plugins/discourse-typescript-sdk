@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { Metadata } from 'discourse-api-documentationlib';
+import { Metadata } from 'discourse';
 
 const metadata: Metadata = {
   sha1Checksum: 'sha1-checksum2',

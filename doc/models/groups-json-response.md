@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { GroupsJsonResponse } from 'discourse-api-documentationlib';
+import { GroupsJsonResponse } from 'discourse';
 
 const groupsJsonResponse: GroupsJsonResponse = {
   group: {

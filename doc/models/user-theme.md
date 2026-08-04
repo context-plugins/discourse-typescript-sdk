@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { UserTheme } from 'discourse-api-documentationlib';
+import { UserTheme } from 'discourse';
 
 const userTheme: UserTheme = {
   themeId: 224,

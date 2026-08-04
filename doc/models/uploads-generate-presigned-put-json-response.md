@@ -17,9 +17,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsGeneratePresignedPutJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UploadsGeneratePresignedPutJsonResponse } from 'discourse';
 
 const uploadsGeneratePresignedPutJsonResponse: UploadsGeneratePresignedPutJsonResponse = {
   key: 'temp/site/uploads/default/12345/67890.jpg',

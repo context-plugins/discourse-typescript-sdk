@@ -69,7 +69,7 @@
 ## Example
 
 ```ts
-import { Group1 } from 'discourse-api-documentationlib';
+import { Group1 } from 'discourse';
 
 const group1: Group1 = {
   id: 18,

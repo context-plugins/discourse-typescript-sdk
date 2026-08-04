@@ -42,7 +42,7 @@
 ## Example
 
 ```ts
-import { Group7 } from 'discourse-api-documentationlib';
+import { Group7 } from 'discourse';
 
 const group7: Group7 = {
   id: 60,

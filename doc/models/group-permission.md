@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { GroupPermission } from 'discourse-api-documentationlib';
+import { GroupPermission } from 'discourse';
 
 const groupPermission: GroupPermission = {
   permissionType: 202,

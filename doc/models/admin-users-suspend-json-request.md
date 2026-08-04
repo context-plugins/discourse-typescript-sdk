@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { AdminUsersSuspendJsonRequest } from 'discourse-api-documentationlib';
+import { AdminUsersSuspendJsonRequest } from 'discourse';
 
 const adminUsersSuspendJsonRequest: AdminUsersSuspendJsonRequest = {
   suspendUntil: '2121-02-22',

@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  SessionForgotPasswordJsonRequest,
-} from 'discourse-api-documentationlib';
+import { SessionForgotPasswordJsonRequest } from 'discourse';
 
 const sessionForgotPasswordJsonRequest: SessionForgotPasswordJsonRequest = {
   login: 'login8',

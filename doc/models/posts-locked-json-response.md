@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { PostsLockedJsonResponse } from 'discourse-api-documentationlib';
+import { PostsLockedJsonResponse } from 'discourse';
 
 const postsLockedJsonResponse: PostsLockedJsonResponse = {
   locked: false,

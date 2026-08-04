@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  UserAvatarRefreshGravatarJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UserAvatarRefreshGravatarJsonResponse } from 'discourse';
 
 const userAvatarRefreshGravatarJsonResponse: UserAvatarRefreshGravatarJsonResponse = {
   gravatarUploadId: 194,

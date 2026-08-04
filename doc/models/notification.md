@@ -25,7 +25,7 @@
 ## Example
 
 ```ts
-import { Notification } from 'discourse-api-documentationlib';
+import { Notification } from 'discourse';
 
 const notification: Notification = {
   id: 88,

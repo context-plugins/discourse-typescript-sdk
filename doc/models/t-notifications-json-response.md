@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TNotificationsJsonResponse } from 'discourse-api-documentationlib';
+import { TNotificationsJsonResponse } from 'discourse';
 
 const tNotificationsJsonResponse: TNotificationsJsonResponse = {
   success: 'OK',

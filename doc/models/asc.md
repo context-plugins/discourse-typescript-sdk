@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { Asc } from 'discourse-api-documentationlib';
+import { Asc } from 'discourse';
 
 const asc = Asc.True;
 ```

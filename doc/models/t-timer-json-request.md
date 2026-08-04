@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { TTimerJsonRequest } from 'discourse-api-documentationlib';
+import { TTimerJsonRequest } from 'discourse';
 
 const tTimerJsonRequest: TTimerJsonRequest = {
   time: 'time0',

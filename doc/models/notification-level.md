@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { NotificationLevel } from 'discourse-api-documentationlib';
+import { NotificationLevel } from 'discourse';
 
 const notificationLevel = NotificationLevel.Enum0;
 ```

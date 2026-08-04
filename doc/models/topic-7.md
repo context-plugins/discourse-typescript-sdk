@@ -49,7 +49,7 @@
 ## Example
 
 ```ts
-import { Topic7 } from 'discourse-api-documentationlib';
+import { Topic7 } from 'discourse';
 
 const topic7: Topic7 = {
   id: 162,

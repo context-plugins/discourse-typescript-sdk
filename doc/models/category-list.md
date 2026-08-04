@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { CategoryList } from 'discourse-api-documentationlib';
+import { CategoryList } from 'discourse';
 
 const categoryList: CategoryList = {
   canCreateCategory: false,

@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TChangeTimestampJsonResponse } from 'discourse-api-documentationlib';
+import { TChangeTimestampJsonResponse } from 'discourse';
 
 const tChangeTimestampJsonResponse: TChangeTimestampJsonResponse = {
   success: 'OK',

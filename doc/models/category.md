@@ -79,7 +79,7 @@
 ## Example
 
 ```ts
-import { Category } from 'discourse-api-documentationlib';
+import { Category } from 'discourse';
 
 const category: Category = {
   id: 232,

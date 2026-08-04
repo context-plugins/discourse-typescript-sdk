@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Suspension } from 'discourse-api-documentationlib';
+import { Suspension } from 'discourse';
 
 const suspension: Suspension = {
   suspendReason: 'suspend_reason4',

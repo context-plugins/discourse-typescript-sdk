@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { UJsonRequest } from 'discourse-api-documentationlib';
+import { UJsonRequest } from 'discourse';
 
 const uJsonRequest: UJsonRequest = {
   name: 'name8',

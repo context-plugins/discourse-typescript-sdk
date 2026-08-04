@@ -25,7 +25,7 @@
 ## Example
 
 ```ts
-import { SiteBasicInfoJsonResponse } from 'discourse-api-documentationlib';
+import { SiteBasicInfoJsonResponse } from 'discourse';
 
 const siteBasicInfoJsonResponse: SiteBasicInfoJsonResponse = {
   logoUrl: 'logo_url4',

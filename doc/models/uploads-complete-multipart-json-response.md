@@ -29,9 +29,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsCompleteMultipartJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UploadsCompleteMultipartJsonResponse } from 'discourse';
 
 const uploadsCompleteMultipartJsonResponse: UploadsCompleteMultipartJsonResponse = {
   id: 50,

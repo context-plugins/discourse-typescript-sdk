@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { Extra } from 'discourse-api-documentationlib';
+import { Extra } from 'discourse';
 
 const extra: Extra = {
   categories: 'categories8',

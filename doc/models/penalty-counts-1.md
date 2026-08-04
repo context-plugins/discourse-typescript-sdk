@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { PenaltyCounts1 } from 'discourse-api-documentationlib';
+import { PenaltyCounts1 } from 'discourse';
 
 const penaltyCounts1: PenaltyCounts1 = {
   silenced: 140,

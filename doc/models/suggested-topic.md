@@ -42,7 +42,7 @@
 ## Example
 
 ```ts
-import { SuggestedTopic } from 'discourse-api-documentationlib';
+import { SuggestedTopic } from 'discourse';
 
 const suggestedTopic: SuggestedTopic = {
   id: 68,

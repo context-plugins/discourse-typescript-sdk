@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { Period } from 'discourse-api-documentationlib';
+import { Period } from 'discourse';
 
 const period = Period.Before;
 ```

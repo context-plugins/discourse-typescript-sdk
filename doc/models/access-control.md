@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { AccessControl } from 'discourse-api-documentationlib';
+import { AccessControl } from 'discourse';
 
 const accessControl: AccessControl = {
   mandatoryAcl: { 'key1': 'val1', 'key2': 'val2' },

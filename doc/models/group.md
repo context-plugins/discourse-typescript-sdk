@@ -32,7 +32,7 @@
 ## Example
 
 ```ts
-import { Group } from 'discourse-api-documentationlib';
+import { Group } from 'discourse';
 
 const group: Group = {
   name: 'name8',

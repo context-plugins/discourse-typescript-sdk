@@ -68,7 +68,7 @@
 ## Example
 
 ```ts
-import { PostsRepliesJsonResponse } from 'discourse-api-documentationlib';
+import { PostsRepliesJsonResponse } from 'discourse';
 
 const postsRepliesJsonResponse: PostsRepliesJsonResponse = {
   id: 212,

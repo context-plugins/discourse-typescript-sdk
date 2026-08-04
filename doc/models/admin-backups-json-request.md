@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { AdminBackupsJsonRequest } from 'discourse-api-documentationlib';
+import { AdminBackupsJsonRequest } from 'discourse';
 
 const adminBackupsJsonRequest: AdminBackupsJsonRequest = {
   withUploads: false,

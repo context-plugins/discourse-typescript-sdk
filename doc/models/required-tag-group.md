@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { RequiredTagGroup } from 'discourse-api-documentationlib';
+import { RequiredTagGroup } from 'discourse';
 
 const requiredTagGroup: RequiredTagGroup = {
   name: 'name6',

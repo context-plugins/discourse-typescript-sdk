@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { PostsJsonResponse3 } from 'discourse-api-documentationlib';
+import { PostsJsonResponse3 } from 'discourse';
 
 const postsJsonResponse3: PostsJsonResponse3 = {
   post: {

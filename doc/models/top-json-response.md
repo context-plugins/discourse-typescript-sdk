@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { TopJsonResponse } from 'discourse-api-documentationlib';
+import { TopJsonResponse } from 'discourse';
 
 const topJsonResponse: TopJsonResponse = {
   users: [

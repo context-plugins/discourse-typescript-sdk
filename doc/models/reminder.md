@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { Period, Reminder } from 'discourse-api-documentationlib';
+import { Period, Reminder } from 'discourse';
 
 const reminder: Reminder = {
   value: 88,

@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsCompleteMultipartJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UploadsCompleteMultipartJsonRequest } from 'discourse';
 
 const uploadsCompleteMultipartJsonRequest: UploadsCompleteMultipartJsonRequest = {
   uniqueIdentifier: '66e86218-80d9-4bda-b4d5-2b6def968705',

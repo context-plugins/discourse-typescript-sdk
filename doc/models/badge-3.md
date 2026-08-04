@@ -28,7 +28,7 @@
 ## Example
 
 ```ts
-import { Badge3 } from 'discourse-api-documentationlib';
+import { Badge3 } from 'discourse';
 
 const badge3: Badge3 = {
   id: 26,

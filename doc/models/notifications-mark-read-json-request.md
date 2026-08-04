@@ -17,9 +17,7 @@
 ## Example
 
 ```ts
-import {
-  NotificationsMarkReadJsonRequest,
-} from 'discourse-api-documentationlib';
+import { NotificationsMarkReadJsonRequest } from 'discourse';
 
 const notificationsMarkReadJsonRequest: NotificationsMarkReadJsonRequest = {
   id: 62,

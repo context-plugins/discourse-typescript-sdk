@@ -22,7 +22,7 @@
 ## Example
 
 ```ts
-import { DirectoryItem } from 'discourse-api-documentationlib';
+import { DirectoryItem } from 'discourse';
 
 const directoryItem: DirectoryItem = {
   id: 30,

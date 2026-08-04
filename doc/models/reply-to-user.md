@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { ReplyToUser } from 'discourse-api-documentationlib';
+import { ReplyToUser } from 'discourse';
 
 const replyToUser: ReplyToUser = {
   username: 'username2',

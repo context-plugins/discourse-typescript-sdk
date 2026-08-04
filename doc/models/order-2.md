@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { Order2 } from 'discourse-api-documentationlib';
+import { Order2 } from 'discourse';
 
 const order2 = Order2.DaysVisited;
 ```

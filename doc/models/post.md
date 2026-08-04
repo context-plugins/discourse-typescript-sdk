@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Post } from 'discourse-api-documentationlib';
+import { Post } from 'discourse';
 
 const post: Post = {
   id: 236,

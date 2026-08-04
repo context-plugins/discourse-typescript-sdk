@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { AdminBadgesJsonRequest } from 'discourse-api-documentationlib';
+import { AdminBadgesJsonRequest } from 'discourse';
 
 const adminBadgesJsonRequest: AdminBadgesJsonRequest = {
   name: 'name8',

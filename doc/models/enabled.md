@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { Enabled } from 'discourse-api-documentationlib';
+import { Enabled } from 'discourse';
 
 const enabled = Enabled.True;
 ```

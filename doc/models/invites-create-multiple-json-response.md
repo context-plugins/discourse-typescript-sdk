@@ -20,9 +20,7 @@
 ## Example
 
 ```ts
-import {
-  InvitesCreateMultipleJsonResponse,
-} from 'discourse-api-documentationlib';
+import { InvitesCreateMultipleJsonResponse } from 'discourse';
 
 const invitesCreateMultipleJsonResponse: InvitesCreateMultipleJsonResponse = {
   numSuccessfullyCreatedInvitations: 42,

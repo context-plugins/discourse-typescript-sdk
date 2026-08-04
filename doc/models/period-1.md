@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { Period1 } from 'discourse-api-documentationlib';
+import { Period1 } from 'discourse';
 
 const period1 = Period1.Daily;
 ```

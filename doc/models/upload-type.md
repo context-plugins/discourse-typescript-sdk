@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { UploadType } from 'discourse-api-documentationlib';
+import { UploadType } from 'discourse';
 
 const uploadType = UploadType.CardBackground;
 ```

@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TJsonRequest } from 'discourse-api-documentationlib';
+import { TJsonRequest } from 'discourse';
 
 const tJsonRequest: TJsonRequest = {
   topic: {

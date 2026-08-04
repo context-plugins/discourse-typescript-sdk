@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { Order } from 'discourse-api-documentationlib';
+import { Order } from 'discourse';
 
 const order = Order.Asc;
 ```

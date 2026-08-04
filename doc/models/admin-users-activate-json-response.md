@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  AdminUsersActivateJsonResponse,
-} from 'discourse-api-documentationlib';
+import { AdminUsersActivateJsonResponse } from 'discourse';
 
 const adminUsersActivateJsonResponse: AdminUsersActivateJsonResponse = {
   success: 'OK',

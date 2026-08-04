@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { ApprovedBy } from 'discourse-api-documentationlib';
+import { ApprovedBy } from 'discourse';
 
 const approvedBy: ApprovedBy = {
   id: 156,

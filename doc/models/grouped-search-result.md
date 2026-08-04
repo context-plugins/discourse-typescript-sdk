@@ -27,7 +27,7 @@
 ## Example
 
 ```ts
-import { GroupedSearchResult } from 'discourse-api-documentationlib';
+import { GroupedSearchResult } from 'discourse';
 
 const groupedSearchResult: GroupedSearchResult = {
   morePosts: 'more_posts4',

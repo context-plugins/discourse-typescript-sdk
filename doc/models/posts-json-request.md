@@ -25,7 +25,7 @@
 ## Example
 
 ```ts
-import { PostsJsonRequest } from 'discourse-api-documentationlib';
+import { PostsJsonRequest } from 'discourse';
 
 const postsJsonRequest: PostsJsonRequest = {
   raw: 'raw2',

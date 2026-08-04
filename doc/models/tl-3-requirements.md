@@ -43,7 +43,7 @@
 ## Example
 
 ```ts
-import { Tl3Requirements } from 'discourse-api-documentationlib';
+import { Tl3Requirements } from 'discourse';
 
 const tl3Requirements: Tl3Requirements = {
   timePeriod: 106,

@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { PostsJsonResponse } from 'discourse-api-documentationlib';
+import { PostsJsonResponse } from 'discourse';
 
 const postsJsonResponse: PostsJsonResponse = {
   latestPosts: [

@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { Reason, UpcomingChangesStat } from 'discourse-api-documentationlib';
+import { Reason, UpcomingChangesStat } from 'discourse';
 
 const upcomingChangesStat: UpcomingChangesStat = {
   name: 'name4',

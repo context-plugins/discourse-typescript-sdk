@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { UserColorScheme } from 'discourse-api-documentationlib';
+import { UserColorScheme } from 'discourse';
 
 const userColorScheme: UserColorScheme = {
   id: 28,

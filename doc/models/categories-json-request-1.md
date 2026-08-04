@@ -27,7 +27,7 @@
 ## Example
 
 ```ts
-import { CategoriesJsonRequest1 } from 'discourse-api-documentationlib';
+import { CategoriesJsonRequest1 } from 'discourse';
 
 const categoriesJsonRequest1: CategoriesJsonRequest1 = {
   name: 'name2',

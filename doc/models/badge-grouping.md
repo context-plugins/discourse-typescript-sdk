@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { BadgeGrouping } from 'discourse-api-documentationlib';
+import { BadgeGrouping } from 'discourse';
 
 const badgeGrouping: BadgeGrouping = {
   id: 228,

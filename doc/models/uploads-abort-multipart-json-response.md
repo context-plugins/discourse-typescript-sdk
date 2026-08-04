@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsAbortMultipartJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UploadsAbortMultipartJsonResponse } from 'discourse';
 
 const uploadsAbortMultipartJsonResponse: UploadsAbortMultipartJsonResponse = {
   success: 'OK',

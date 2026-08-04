@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { Creator } from 'discourse-api-documentationlib';
+import { Creator } from 'discourse';
 
 const creator: Creator = {
   id: 76,

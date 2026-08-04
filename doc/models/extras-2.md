@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { Extras2 } from 'discourse-api-documentationlib';
+import { Extras2 } from 'discourse';
 
 const extras2: Extras2 = {
   typeFilters: [

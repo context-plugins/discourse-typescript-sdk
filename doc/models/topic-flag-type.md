@@ -26,7 +26,7 @@
 ## Example
 
 ```ts
-import { TopicFlagType } from 'discourse-api-documentationlib';
+import { TopicFlagType } from 'discourse';
 
 const topicFlagType: TopicFlagType = {
   id: 196,

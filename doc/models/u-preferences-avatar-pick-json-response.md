@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  UPreferencesAvatarPickJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UPreferencesAvatarPickJsonResponse } from 'discourse';
 
 const uPreferencesAvatarPickJsonResponse: UPreferencesAvatarPickJsonResponse = {
   success: 'OK',

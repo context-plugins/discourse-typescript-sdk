@@ -17,9 +17,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsCompleteExternalUploadJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UploadsCompleteExternalUploadJsonRequest } from 'discourse';
 
 const uploadsCompleteExternalUploadJsonRequest: UploadsCompleteExternalUploadJsonRequest = {
   uniqueIdentifier: '66e86218-80d9-4bda-b4d5-2b6def968705',

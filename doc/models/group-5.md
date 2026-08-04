@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { Group5 } from 'discourse-api-documentationlib';
+import { Group5 } from 'discourse';
 
 const group5: Group5 = {
   id: 32,

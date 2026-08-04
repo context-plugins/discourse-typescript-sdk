@@ -22,7 +22,7 @@
 ## Example
 
 ```ts
-import { Tag3 } from 'discourse-api-documentationlib';
+import { Tag3 } from 'discourse';
 
 const tag3: Tag3 = {
   id: 200,

@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  SessionForgotPasswordJsonResponse,
-} from 'discourse-api-documentationlib';
+import { SessionForgotPasswordJsonResponse } from 'discourse';
 
 const sessionForgotPasswordJsonResponse: SessionForgotPasswordJsonResponse = {
   success: 'success4',

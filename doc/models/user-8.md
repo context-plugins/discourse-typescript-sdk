@@ -97,7 +97,7 @@
 ## Example
 
 ```ts
-import { User8 } from 'discourse-api-documentationlib';
+import { User8 } from 'discourse';
 
 const user8: User8 = {
   id: 92,

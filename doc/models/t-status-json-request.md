@@ -19,11 +19,7 @@
 ## Example
 
 ```ts
-import {
-  Enabled,
-  Status1,
-  TStatusJsonRequest,
-} from 'discourse-api-documentationlib';
+import { Enabled, Status1, TStatusJsonRequest } from 'discourse';
 
 const tStatusJsonRequest: TStatusJsonRequest = {
   status: Status1.PinnedGlobally,

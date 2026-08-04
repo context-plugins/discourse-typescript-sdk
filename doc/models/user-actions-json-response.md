@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { UserActionsJsonResponse } from 'discourse-api-documentationlib';
+import { UserActionsJsonResponse } from 'discourse';
 
 const userActionsJsonResponse: UserActionsJsonResponse = {
   userActions: [

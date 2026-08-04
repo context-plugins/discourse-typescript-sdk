@@ -19,9 +19,7 @@
 ## Example
 
 ```ts
-import {
-  TopicsPrivateMessagesJsonResponse,
-} from 'discourse-api-documentationlib';
+import { TopicsPrivateMessagesJsonResponse } from 'discourse';
 
 const topicsPrivateMessagesJsonResponse: TopicsPrivateMessagesJsonResponse = {
   users: [

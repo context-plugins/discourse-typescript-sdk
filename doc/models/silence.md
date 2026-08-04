@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { Silence } from 'discourse-api-documentationlib';
+import { Silence } from 'discourse';
 
 const silence: Silence = {
   silenced: false,

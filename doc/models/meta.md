@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { Meta } from 'discourse-api-documentationlib';
+import { Meta } from 'discourse';
 
 const meta: Meta = {
   total: 36,

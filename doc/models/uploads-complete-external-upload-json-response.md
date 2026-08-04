@@ -29,9 +29,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsCompleteExternalUploadJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UploadsCompleteExternalUploadJsonResponse } from 'discourse';
 
 const uploadsCompleteExternalUploadJsonResponse: UploadsCompleteExternalUploadJsonResponse = {
   id: 54,

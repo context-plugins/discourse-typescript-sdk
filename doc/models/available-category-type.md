@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { AvailableCategoryType } from 'discourse-api-documentationlib';
+import { AvailableCategoryType } from 'discourse';
 
 const availableCategoryType: AvailableCategoryType = {
   id: 'id6',

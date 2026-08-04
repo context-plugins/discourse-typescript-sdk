@@ -58,7 +58,7 @@
 ## Example
 
 ```ts
-import { Category1 } from 'discourse-api-documentationlib';
+import { Category1 } from 'discourse';
 
 const category1: Category1 = {
   id: 216,

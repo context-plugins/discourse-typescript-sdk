@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { LastPoster } from 'discourse-api-documentationlib';
+import { LastPoster } from 'discourse';
 
 const lastPoster: LastPoster = {
   id: 94,

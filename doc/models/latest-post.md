@@ -71,7 +71,7 @@
 ## Example
 
 ```ts
-import { LatestPost } from 'discourse-api-documentationlib';
+import { LatestPost } from 'discourse';
 
 const latestPost: LatestPost = {
   id: 74,

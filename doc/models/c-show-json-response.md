@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { CShowJsonResponse } from 'discourse-api-documentationlib';
+import { CShowJsonResponse } from 'discourse';
 
 const cShowJsonResponse: CShowJsonResponse = {
   category: {

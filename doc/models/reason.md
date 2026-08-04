@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { Reason } from 'discourse-api-documentationlib';
+import { Reason } from 'discourse';
 
 const reason = Reason.EnabledForEveryone;
 ```

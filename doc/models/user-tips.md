@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { UserTips } from 'discourse-api-documentationlib';
+import { UserTips } from 'discourse';
 
 const userTips: UserTips = {
   firstNotification: 192,

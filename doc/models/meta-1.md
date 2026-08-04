@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { Meta1 } from 'discourse-api-documentationlib';
+import { Meta1 } from 'discourse';
 
 const meta1: Meta1 = {
   lastUpdatedAt: 'last_updated_at6',

@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { AdminBackupsJsonResponse } from 'discourse-api-documentationlib';
+import { AdminBackupsJsonResponse } from 'discourse';
 
 const adminBackupsJsonResponse: AdminBackupsJsonResponse = {
   filename: 'filename8',

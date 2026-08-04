@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Status1 } from 'discourse-api-documentationlib';
+import { Status1 } from 'discourse';
 
 const status1 = Status1.Pinned;
 ```

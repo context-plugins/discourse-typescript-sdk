@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { TrustLevels } from 'discourse-api-documentationlib';
+import { TrustLevels } from 'discourse';
 
 const trustLevels: TrustLevels = {
   newuser: 26,

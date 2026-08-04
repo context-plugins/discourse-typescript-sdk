@@ -39,7 +39,7 @@
 ## Example
 
 ```ts
-import { UserAction } from 'discourse-api-documentationlib';
+import { UserAction } from 'discourse';
 
 const userAction: UserAction = {
   excerpt: 'excerpt6',

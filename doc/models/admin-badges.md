@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { AdminBadges } from 'discourse-api-documentationlib';
+import { AdminBadges } from 'discourse';
 
 const adminBadges: AdminBadges = {
   protectedSystemFields: [

@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { Data } from 'discourse-api-documentationlib';
+import { Data } from 'discourse';
 
 const data: Data = {
   badgeId: 98,

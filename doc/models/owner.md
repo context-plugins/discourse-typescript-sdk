@@ -22,7 +22,7 @@
 ## Example
 
 ```ts
-import { Owner } from 'discourse-api-documentationlib';
+import { Owner } from 'discourse';
 
 const owner: Owner = {
   id: 84,

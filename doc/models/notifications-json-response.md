@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { NotificationsJsonResponse } from 'discourse-api-documentationlib';
+import { NotificationsJsonResponse } from 'discourse';
 
 const notificationsJsonResponse: NotificationsJsonResponse = {
   notifications: [

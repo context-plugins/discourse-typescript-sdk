@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { TPostsJsonResponse } from 'discourse-api-documentationlib';
+import { TPostsJsonResponse } from 'discourse';
 
 const tPostsJsonResponse: TPostsJsonResponse = {
   postStream: {

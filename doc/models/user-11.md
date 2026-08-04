@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { User11 } from 'discourse-api-documentationlib';
+import { User11 } from 'discourse';
 
 const user11: User11 = {
   id: 106,

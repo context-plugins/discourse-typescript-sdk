@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { CustomFields } from 'discourse-api-documentationlib';
+import { CustomFields } from 'discourse';
 
 const customFields: CustomFields = {
   firstName: 'first_name0',

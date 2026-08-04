@@ -23,7 +23,7 @@
 ## Example
 
 ```ts
-import { UserAuthToken } from 'discourse-api-documentationlib';
+import { UserAuthToken } from 'discourse';
 
 const userAuthToken: UserAuthToken = {
   id: 242,

@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { Status } from 'discourse-api-documentationlib';
+import { Status } from 'discourse';
 
 const status = Status.Standalone;
 ```

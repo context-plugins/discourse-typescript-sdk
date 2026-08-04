@@ -62,7 +62,7 @@
 ## Example
 
 ```ts
-import { NotificationTypes } from 'discourse-api-documentationlib';
+import { NotificationTypes } from 'discourse';
 
 const notificationTypes: NotificationTypes = {
   mentioned: 150,

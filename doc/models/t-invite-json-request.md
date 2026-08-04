@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { TInviteJsonRequest } from 'discourse-api-documentationlib';
+import { TInviteJsonRequest } from 'discourse';
 
 const tInviteJsonRequest: TInviteJsonRequest = {
   user: 'user2',

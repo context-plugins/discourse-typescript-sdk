@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { UByExternalJsonResponse } from 'discourse-api-documentationlib';
+import { UByExternalJsonResponse } from 'discourse';
 
 const uByExternalJsonResponse: UByExternalJsonResponse = {
   userBadges: [

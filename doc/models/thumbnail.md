@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { Thumbnail } from 'discourse-api-documentationlib';
+import { Thumbnail } from 'discourse';
 
 const thumbnail: Thumbnail = {
   id: 154,

@@ -37,7 +37,7 @@
 ## Example
 
 ```ts
-import { Badge } from 'discourse-api-documentationlib';
+import { Badge } from 'discourse';
 
 const badge: Badge = {
   id: 184,

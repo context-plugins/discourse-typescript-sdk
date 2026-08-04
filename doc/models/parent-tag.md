@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { ParentTag } from 'discourse-api-documentationlib';
+import { ParentTag } from 'discourse';
 
 const parentTag: ParentTag = {
   id: 82,

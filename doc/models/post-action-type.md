@@ -26,7 +26,7 @@
 ## Example
 
 ```ts
-import { PostActionType } from 'discourse-api-documentationlib';
+import { PostActionType } from 'discourse';
 
 const postActionType: PostActionType = {
   id: 228,

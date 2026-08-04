@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { SuspendedBy } from 'discourse-api-documentationlib';
+import { SuspendedBy } from 'discourse';
 
 const suspendedBy: SuspendedBy = {
   id: 102,

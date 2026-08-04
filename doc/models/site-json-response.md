@@ -64,7 +64,7 @@
 ## Example
 
 ```ts
-import { SiteJsonResponse } from 'discourse-api-documentationlib';
+import { SiteJsonResponse } from 'discourse';
 
 const siteJsonResponse: SiteJsonResponse = {
   defaultArchetype: 'default_archetype0',

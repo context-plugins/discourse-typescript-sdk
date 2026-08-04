@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { SilencedBy } from 'discourse-api-documentationlib';
+import { SilencedBy } from 'discourse';
 
 const silencedBy: SilencedBy = {
   id: 36,

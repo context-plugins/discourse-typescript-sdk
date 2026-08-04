@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  AdminUsersSuspendJsonResponse,
-} from 'discourse-api-documentationlib';
+import { AdminUsersSuspendJsonResponse } from 'discourse';
 
 const adminUsersSuspendJsonResponse: AdminUsersSuspendJsonResponse = {
   suspension: {

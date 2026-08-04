@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  AdminUsersAnonymizeJsonResponse,
-} from 'discourse-api-documentationlib';
+import { AdminUsersAnonymizeJsonResponse } from 'discourse';
 
 const adminUsersAnonymizeJsonResponse: AdminUsersAnonymizeJsonResponse = {
   success: 'success8',

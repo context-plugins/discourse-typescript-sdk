@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Triggers } from 'discourse-api-documentationlib';
+import { Triggers } from 'discourse';
 
 const triggers: Triggers = {
   userChange: 26,

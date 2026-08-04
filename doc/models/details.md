@@ -37,7 +37,7 @@
 ## Example
 
 ```ts
-import { Details } from 'discourse-api-documentationlib';
+import { Details } from 'discourse';
 
 const details: Details = {
   canEdit: false,

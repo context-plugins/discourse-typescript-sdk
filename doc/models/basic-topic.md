@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { BasicTopic } from 'discourse-api-documentationlib';
+import { BasicTopic } from 'discourse';
 
 const basicTopic: BasicTopic = {
   id: 164,

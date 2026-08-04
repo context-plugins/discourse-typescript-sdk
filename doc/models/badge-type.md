@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { BadgeType } from 'discourse-api-documentationlib';
+import { BadgeType } from 'discourse';
 
 const badgeType: BadgeType = {
   id: 78,

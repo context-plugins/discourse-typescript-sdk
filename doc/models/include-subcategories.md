@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { IncludeSubcategories } from 'discourse-api-documentationlib';
+import { IncludeSubcategories } from 'discourse';
 
 const includeSubcategories = IncludeSubcategories.True;
 ```

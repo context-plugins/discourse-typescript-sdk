@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { Flag } from 'discourse-api-documentationlib';
+import { Flag } from 'discourse';
 
 const flag = Flag.Staff;
 ```

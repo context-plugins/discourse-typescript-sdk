@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { Archetype } from 'discourse-api-documentationlib';
+import { Archetype } from 'discourse';
 
 const archetype: Archetype = {
   id: 'id4',

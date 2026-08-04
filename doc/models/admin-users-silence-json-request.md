@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { AdminUsersSilenceJsonRequest } from 'discourse-api-documentationlib';
+import { AdminUsersSilenceJsonRequest } from 'discourse';
 
 const adminUsersSilenceJsonRequest: AdminUsersSilenceJsonRequest = {
   silencedTill: '2022-06-01T08:00:00.000Z',

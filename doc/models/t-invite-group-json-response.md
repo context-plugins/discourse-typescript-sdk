@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TInviteGroupJsonResponse } from 'discourse-api-documentationlib';
+import { TInviteGroupJsonResponse } from 'discourse';
 
 const tInviteGroupJsonResponse: TInviteGroupJsonResponse = {
   group: {

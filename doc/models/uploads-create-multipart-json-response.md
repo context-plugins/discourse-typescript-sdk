@@ -16,9 +16,7 @@
 ## Example
 
 ```ts
-import {
-  UploadsCreateMultipartJsonResponse,
-} from 'discourse-api-documentationlib';
+import { UploadsCreateMultipartJsonResponse } from 'discourse';
 
 const uploadsCreateMultipartJsonResponse: UploadsCreateMultipartJsonResponse = {
   key: 'temp/site/uploads/default/12345/67890.jpg',

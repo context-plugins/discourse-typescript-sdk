@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { AdminGroupsJsonRequest } from 'discourse-api-documentationlib';
+import { AdminGroupsJsonRequest } from 'discourse';
 
 const adminGroupsJsonRequest: AdminGroupsJsonRequest = {
   group: {

@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { ActionsSummary5 } from 'discourse-api-documentationlib';
+import { ActionsSummary5 } from 'discourse';
 
 const actionsSummary5: ActionsSummary5 = {
   id: 252,

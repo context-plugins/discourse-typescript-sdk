@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { TagsJsonResponse } from 'discourse-api-documentationlib';
+import { TagsJsonResponse } from 'discourse';
 
 const tagsJsonResponse: TagsJsonResponse = {
   tags: [

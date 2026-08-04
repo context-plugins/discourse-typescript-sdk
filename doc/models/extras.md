@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { Extras } from 'discourse-api-documentationlib';
+import { Extras } from 'discourse';
 
 const extras: Extras = {
   visibleGroupNames: [

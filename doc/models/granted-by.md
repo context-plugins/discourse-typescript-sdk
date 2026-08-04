@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { GrantedBy } from 'discourse-api-documentationlib';
+import { GrantedBy } from 'discourse';
 
 const grantedBy: GrantedBy = {
   id: 130,

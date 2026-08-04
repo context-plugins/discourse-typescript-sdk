@@ -16,7 +16,7 @@
 ## Example
 
 ```ts
-import { Poster4 } from 'discourse-api-documentationlib';
+import { Poster4 } from 'discourse';
 
 const poster4: Poster4 = {
   extras: 'extras4',

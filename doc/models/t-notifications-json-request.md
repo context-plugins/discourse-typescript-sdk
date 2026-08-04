@@ -17,10 +17,7 @@
 ## Example
 
 ```ts
-import {
-  NotificationLevel,
-  TNotificationsJsonRequest,
-} from 'discourse-api-documentationlib';
+import { NotificationLevel, TNotificationsJsonRequest } from 'discourse';
 
 const tNotificationsJsonRequest: TNotificationsJsonRequest = {
   notificationLevel: NotificationLevel.Enum2,

@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { Participant } from 'discourse-api-documentationlib';
+import { Participant } from 'discourse';
 
 const participant: Participant = {
   extras: 'extras0',

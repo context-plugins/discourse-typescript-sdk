@@ -17,11 +17,7 @@ The API client can be initialized as follows:
 ## Code-Based Client Initialization
 
 ```ts
-import {
-  Client,
-  Environment,
-  LogLevel,
-} from 'discourse-api-documentationlib';
+import { Client, Environment, LogLevel } from 'discourse';
 
 const client = new Client({
   timeout: 30000,
@@ -44,7 +40,7 @@ const client = new Client({
 ```ts
 import * as path from 'path';
 import * as fs from 'fs';
-import { Client } from 'discourse-api-documentationlib';
+import { Client } from 'discourse';
 
 // Provide absolute path for the configuration file
 const absolutePath = path.resolve('./config.json');
@@ -64,7 +60,7 @@ See the [Configuration-Based Client Initialization](../doc/configuration-based-c
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import * as fs from 'fs';
-import { Client } from 'discourse-api-documentationlib';
+import { Client } from 'discourse';
 
 // Optional - Provide absolute path for the .env file
 const absolutePath = path.resolve('./.env');

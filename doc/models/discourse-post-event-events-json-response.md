@@ -14,10 +14,7 @@
 ## Example
 
 ```ts
-import {
-  DiscoursePostEventEventsJsonResponse,
-  Status,
-} from 'discourse-api-documentationlib';
+import { DiscoursePostEventEventsJsonResponse, Status } from 'discourse';
 
 const discoursePostEventEventsJsonResponse: DiscoursePostEventEventsJsonResponse = {
   events: [

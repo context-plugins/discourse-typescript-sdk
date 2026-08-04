@@ -14,9 +14,7 @@
 ## Example
 
 ```ts
-import {
-  UPreferencesUsernameJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UPreferencesUsernameJsonRequest } from 'discourse';
 
 const uPreferencesUsernameJsonRequest: UPreferencesUsernameJsonRequest = {
   newUsername: 'new_username6',

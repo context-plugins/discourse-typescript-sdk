@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { Topic5 } from 'discourse-api-documentationlib';
+import { Topic5 } from 'discourse';
 
 const topic5: Topic5 = {
   title: 'title0',

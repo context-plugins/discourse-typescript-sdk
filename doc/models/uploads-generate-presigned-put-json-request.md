@@ -17,10 +17,7 @@
 ## Example
 
 ```ts
-import {
-  Type,
-  UploadsGeneratePresignedPutJsonRequest,
-} from 'discourse-api-documentationlib';
+import { Type, UploadsGeneratePresignedPutJsonRequest } from 'discourse';
 
 const uploadsGeneratePresignedPutJsonRequest: UploadsGeneratePresignedPutJsonRequest = {
   type: Type.CardBackground,

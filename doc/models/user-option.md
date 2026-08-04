@@ -63,7 +63,7 @@
 ## Example
 
 ```ts
-import { UserOption } from 'discourse-api-documentationlib';
+import { UserOption } from 'discourse';
 
 const userOption: UserOption = {
   userId: 16,

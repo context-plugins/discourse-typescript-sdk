@@ -24,9 +24,7 @@
 ## Example
 
 ```ts
-import {
-  InvitesCreateMultipleJsonRequest,
-} from 'discourse-api-documentationlib';
+import { InvitesCreateMultipleJsonRequest } from 'discourse';
 
 const invitesCreateMultipleJsonRequest: InvitesCreateMultipleJsonRequest = {
   email: '[\n  "not-a-user-yet-1@example.com",\n  "not-a-user-yet-2@example.com"\n]',

@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { TagGroupsJsonResponse3 } from 'discourse-api-documentationlib';
+import { TagGroupsJsonResponse3 } from 'discourse';
 
 const tagGroupsJsonResponse3: TagGroupsJsonResponse3 = {
   success: 'success0',

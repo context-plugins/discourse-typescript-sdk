@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { PostStream } from 'discourse-api-documentationlib';
+import { PostStream } from 'discourse';
 
 const postStream: PostStream = {
   posts: [

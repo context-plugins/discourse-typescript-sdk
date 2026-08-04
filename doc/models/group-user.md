@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { GroupUser } from 'discourse-api-documentationlib';
+import { GroupUser } from 'discourse';
 
 const groupUser: GroupUser = {
   groupId: 158,

@@ -17,10 +17,7 @@
 ## Example
 
 ```ts
-import {
-  UploadType1,
-  UploadsCreateMultipartJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UploadType1, UploadsCreateMultipartJsonRequest } from 'discourse';
 
 const uploadsCreateMultipartJsonRequest: UploadsCreateMultipartJsonRequest = {
   uploadType: UploadType1.CustomEmoji,

@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { CategoriesJsonResponse2 } from 'discourse-api-documentationlib';
+import { CategoriesJsonResponse2 } from 'discourse';
 
 const categoriesJsonResponse2: CategoriesJsonResponse2 = {
   success: 'success0',

@@ -15,7 +15,7 @@
 ## Example
 
 ```ts
-import { Occurrence } from 'discourse-api-documentationlib';
+import { Occurrence } from 'discourse';
 
 const occurrence: Occurrence = {
   startsAt: 'starts_at2',

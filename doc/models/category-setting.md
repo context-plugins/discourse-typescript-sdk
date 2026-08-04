@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { CategorySetting } from 'discourse-api-documentationlib';
+import { CategorySetting } from 'discourse';
 
 const categorySetting: CategorySetting = {
   autoBumpCooldownDays: 102,

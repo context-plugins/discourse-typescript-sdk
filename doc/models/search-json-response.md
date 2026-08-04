@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { SearchJsonResponse } from 'discourse-api-documentationlib';
+import { SearchJsonResponse } from 'discourse';
 
 const searchJsonResponse: SearchJsonResponse = {
   posts: [

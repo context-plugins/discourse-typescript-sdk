@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { AdminUsersJsonRequest } from 'discourse-api-documentationlib';
+import { AdminUsersJsonRequest } from 'discourse';
 
 const adminUsersJsonRequest: AdminUsersJsonRequest = {
   deletePosts: false,

@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { CategoryLocalization } from 'discourse-api-documentationlib';
+import { CategoryLocalization } from 'discourse';
 
 const categoryLocalization: CategoryLocalization = {
   locale: 'locale6',

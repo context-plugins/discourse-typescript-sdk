@@ -63,7 +63,7 @@
 ## Example
 
 ```ts
-import { TJsonResponse } from 'discourse-api-documentationlib';
+import { TJsonResponse } from 'discourse';
 
 const tJsonResponse: TJsonResponse = {
   postStream: {

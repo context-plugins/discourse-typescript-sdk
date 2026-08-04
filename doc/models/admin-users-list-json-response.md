@@ -40,7 +40,7 @@
 ## Example
 
 ```ts
-import { AdminUsersListJsonResponse } from 'discourse-api-documentationlib';
+import { AdminUsersListJsonResponse } from 'discourse';
 
 const adminUsersListJsonResponse: AdminUsersListJsonResponse = {
   id: 208,

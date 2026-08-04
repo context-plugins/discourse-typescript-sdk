@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { Tag } from 'discourse-api-documentationlib';
+import { Tag } from 'discourse';
 
 const tag: Tag = {
   id: 168,

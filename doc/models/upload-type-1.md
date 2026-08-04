@@ -18,7 +18,7 @@
 ## Example
 
 ```ts
-import { UploadType1 } from 'discourse-api-documentationlib';
+import { UploadType1 } from 'discourse';
 
 const uploadType1 = UploadType1.Avatar;
 ```

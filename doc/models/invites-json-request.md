@@ -21,7 +21,7 @@
 ## Example
 
 ```ts
-import { InvitesJsonRequest } from 'discourse-api-documentationlib';
+import { InvitesJsonRequest } from 'discourse';
 
 const invitesJsonRequest: InvitesJsonRequest = {
   email: 'not-a-user-yet@example.com',

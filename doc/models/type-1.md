@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { Type1 } from 'discourse-api-documentationlib';
+import { Type1 } from 'discourse';
 
 const type1 = Type1.Gravatar;
 ```

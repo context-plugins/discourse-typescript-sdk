@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { PostTypes } from 'discourse-api-documentationlib';
+import { PostTypes } from 'discourse';
 
 const postTypes: PostTypes = {
   regular: 210,

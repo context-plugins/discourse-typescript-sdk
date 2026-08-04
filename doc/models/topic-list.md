@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TopicList } from 'discourse-api-documentationlib';
+import { TopicList } from 'discourse';
 
 const topicList: TopicList = {
   canCreateTopic: false,

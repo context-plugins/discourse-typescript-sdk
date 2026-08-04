@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { UEmailsJsonResponse } from 'discourse-api-documentationlib';
+import { UEmailsJsonResponse } from 'discourse';
 
 const uEmailsJsonResponse: UEmailsJsonResponse = {
   email: 'email0',

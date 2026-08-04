@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { TagGroup } from 'discourse-api-documentationlib';
+import { TagGroup } from 'discourse';
 
 const tagGroup: TagGroup = {
   id: 4,

@@ -17,9 +17,7 @@
 ## Example
 
 ```ts
-import {
-  NotificationsMarkReadJsonResponse,
-} from 'discourse-api-documentationlib';
+import { NotificationsMarkReadJsonResponse } from 'discourse';
 
 const notificationsMarkReadJsonResponse: NotificationsMarkReadJsonResponse = {
   success: 'success8',

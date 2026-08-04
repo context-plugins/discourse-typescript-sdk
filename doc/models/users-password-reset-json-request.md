@@ -15,9 +15,7 @@
 ## Example
 
 ```ts
-import {
-  UsersPasswordResetJsonRequest,
-} from 'discourse-api-documentationlib';
+import { UsersPasswordResetJsonRequest } from 'discourse';
 
 const usersPasswordResetJsonRequest: UsersPasswordResetJsonRequest = {
   username: 'username6',

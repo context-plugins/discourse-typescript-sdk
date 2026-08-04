@@ -22,7 +22,7 @@
 ## Example
 
 ```ts
-import { TTimerJsonResponse } from 'discourse-api-documentationlib';
+import { TTimerJsonResponse } from 'discourse';
 
 const tTimerJsonResponse: TTimerJsonResponse = {
   success: 'OK',

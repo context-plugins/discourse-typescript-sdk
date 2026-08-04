@@ -19,7 +19,7 @@
 ## Example
 
 ```ts
-import { TagJsonResponse } from 'discourse-api-documentationlib';
+import { TagJsonResponse } from 'discourse';
 
 const tagJsonResponse: TagJsonResponse = {
   users: [

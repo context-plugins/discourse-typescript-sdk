@@ -14,7 +14,7 @@
 ## Example
 
 ```ts
-import { AdminUsersJsonResponse1 } from 'discourse-api-documentationlib';
+import { AdminUsersJsonResponse1 } from 'discourse';
 
 const adminUsersJsonResponse1: AdminUsersJsonResponse1 = {
   deleted: false,

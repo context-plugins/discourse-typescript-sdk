@@ -24,7 +24,7 @@
 ## Example
 
 ```ts
-import { Order3 } from 'discourse-api-documentationlib';
+import { Order3 } from 'discourse';
 
 const order3 = Order3.PostsRead;
 ```

@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { TChangeTimestampJsonRequest } from 'discourse-api-documentationlib';
+import { TChangeTimestampJsonRequest } from 'discourse';
 
 const tChangeTimestampJsonRequest: TChangeTimestampJsonRequest = {
   timestamp: '1594291380',

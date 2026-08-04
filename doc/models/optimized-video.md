@@ -20,7 +20,7 @@
 ## Example
 
 ```ts
-import { OptimizedVideo } from 'discourse-api-documentationlib';
+import { OptimizedVideo } from 'discourse';
 
 const optimizedVideo: OptimizedVideo = {
   id: 86,

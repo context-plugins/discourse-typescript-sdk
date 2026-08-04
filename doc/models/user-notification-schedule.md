@@ -28,7 +28,7 @@
 ## Example
 
 ```ts
-import { UserNotificationSchedule } from 'discourse-api-documentationlib';
+import { UserNotificationSchedule } from 'discourse';
 
 const userNotificationSchedule: UserNotificationSchedule = {
   enabled: false,

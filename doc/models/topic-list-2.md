@@ -22,7 +22,7 @@
 ## Example
 
 ```ts
-import { TopicList2 } from 'discourse-api-documentationlib';
+import { TopicList2 } from 'discourse';
 
 const topicList2: TopicList2 = {
   canCreateTopic: false,

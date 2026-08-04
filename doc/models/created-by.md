@@ -17,7 +17,7 @@
 ## Example
 
 ```ts
-import { CreatedBy } from 'discourse-api-documentationlib';
+import { CreatedBy } from 'discourse';
 
 const createdBy: CreatedBy = {
   id: 8,
