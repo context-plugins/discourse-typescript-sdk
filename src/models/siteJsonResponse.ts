@@ -66,8 +66,8 @@ export interface SiteJsonResponse {
   defaultDarkColorScheme?: unknown | null;
   censoredRegexp: unknown[];
   customEmojiTranslation?: unknown;
-  watchedWordsReplace: string | null;
-  watchedWordsLink: string | null;
+  watchedWordsReplace?: unknown | null;
+  watchedWordsLink?: unknown | null;
   markdownAdditionalOptions?: unknown;
   hashtagConfigurations?: unknown;
   hashtagIcons?: unknown;
@@ -133,8 +133,11 @@ export const siteJsonResponseSchema: Schema<SiteJsonResponse> = lazy(() =>
     ],
     censoredRegexp: ['censored_regexp', array(unknown())],
     customEmojiTranslation: ['custom_emoji_translation', optional(unknown())],
-    watchedWordsReplace: ['watched_words_replace', nullable(string())],
-    watchedWordsLink: ['watched_words_link', nullable(string())],
+    watchedWordsReplace: [
+      'watched_words_replace',
+      optional(nullable(unknown())),
+    ],
+    watchedWordsLink: ['watched_words_link', optional(nullable(unknown()))],
     markdownAdditionalOptions: [
       'markdown_additional_options',
       optional(unknown()),

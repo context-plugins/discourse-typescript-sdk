@@ -38,14 +38,14 @@ export interface Category4 {
   descriptionExcerpt?: string | null;
   topicUrl: string;
   readRestricted: boolean;
-  permission: number;
+  permission: number | null;
   notificationLevel: number;
   topicTemplate: string | null;
   topicTitlePlaceholder: string | null;
   hasChildren: boolean;
   subcategoryCount: number | null;
   sortOrder: string | null;
-  sortAscending: string | null;
+  sortAscending: boolean | null;
   showSubcategoryList: boolean;
   numFeaturedTopics: number;
   defaultView: string | null;
@@ -54,8 +54,8 @@ export interface Category4 {
   defaultListFilter: string;
   minimumRequiredTags: number;
   navigateToFirstPostAfterRead: boolean;
-  allowedTags: unknown[];
-  allowedTagGroups: unknown[];
+  allowedTags?: unknown[];
+  allowedTagGroups?: unknown[];
   allowGlobalTags: boolean;
   requiredTagGroups: RequiredTagGroup[];
   readOnlyBanner: string | null;
@@ -88,14 +88,14 @@ export const category4Schema: Schema<Category4> = lazy(() =>
     descriptionExcerpt: ['description_excerpt', optional(nullable(string()))],
     topicUrl: ['topic_url', string()],
     readRestricted: ['read_restricted', boolean()],
-    permission: ['permission', number()],
+    permission: ['permission', nullable(number())],
     notificationLevel: ['notification_level', number()],
     topicTemplate: ['topic_template', nullable(string())],
     topicTitlePlaceholder: ['topic_title_placeholder', nullable(string())],
     hasChildren: ['has_children', boolean()],
     subcategoryCount: ['subcategory_count', nullable(number())],
     sortOrder: ['sort_order', nullable(string())],
-    sortAscending: ['sort_ascending', nullable(string())],
+    sortAscending: ['sort_ascending', nullable(boolean())],
     showSubcategoryList: ['show_subcategory_list', boolean()],
     numFeaturedTopics: ['num_featured_topics', number()],
     defaultView: ['default_view', nullable(string())],
@@ -107,8 +107,8 @@ export const category4Schema: Schema<Category4> = lazy(() =>
       'navigate_to_first_post_after_read',
       boolean(),
     ],
-    allowedTags: ['allowed_tags', array(unknown())],
-    allowedTagGroups: ['allowed_tag_groups', array(unknown())],
+    allowedTags: ['allowed_tags', optional(array(unknown()))],
+    allowedTagGroups: ['allowed_tag_groups', optional(array(unknown()))],
     allowGlobalTags: ['allow_global_tags', boolean()],
     requiredTagGroups: ['required_tag_groups', array(requiredTagGroupSchema)],
     readOnlyBanner: ['read_only_banner', nullable(string())],

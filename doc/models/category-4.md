@@ -25,14 +25,14 @@
 | `descriptionExcerpt` | `string \| null \| undefined` | Optional | - |
 | `topicUrl` | `string` | Required | - |
 | `readRestricted` | `boolean` | Required | - |
-| `permission` | `number` | Required | - |
+| `permission` | `number \| null` | Required | - |
 | `notificationLevel` | `number` | Required | - |
 | `topicTemplate` | `string \| null` | Required | - |
 | `topicTitlePlaceholder` | `string \| null` | Required | - |
 | `hasChildren` | `boolean` | Required | - |
 | `subcategoryCount` | `number \| null` | Required | - |
 | `sortOrder` | `string \| null` | Required | - |
-| `sortAscending` | `string \| null` | Required | - |
+| `sortAscending` | `boolean \| null` | Required | - |
 | `showSubcategoryList` | `boolean` | Required | - |
 | `numFeaturedTopics` | `number` | Required | - |
 | `defaultView` | `string \| null` | Required | - |
@@ -41,8 +41,8 @@
 | `defaultListFilter` | `string` | Required | - |
 | `minimumRequiredTags` | `number` | Required | - |
 | `navigateToFirstPostAfterRead` | `boolean` | Required | - |
-| `allowedTags` | `unknown[]` | Required | - |
-| `allowedTagGroups` | `unknown[]` | Required | - |
+| `allowedTags` | `unknown[] \| undefined` | Optional | - |
+| `allowedTagGroups` | `unknown[] \| undefined` | Optional | - |
 | `allowGlobalTags` | `boolean` | Required | - |
 | `requiredTagGroups` | [`RequiredTagGroup[]`](../../doc/models/required-tag-group.md) | Required | - |
 | `readOnlyBanner` | `string \| null` | Required | - |
@@ -79,7 +79,7 @@ const category4: Category4 = {
   hasChildren: false,
   subcategoryCount: 6,
   sortOrder: 'sort_order8',
-  sortAscending: 'sort_ascending8',
+  sortAscending: false,
   showSubcategoryList: false,
   numFeaturedTopics: 72,
   defaultView: 'default_view2',
@@ -88,16 +88,6 @@ const category4: Category4 = {
   defaultListFilter: 'default_list_filter6',
   minimumRequiredTags: 152,
   navigateToFirstPostAfterRead: false,
-  allowedTags: [
-    { 'key1': 'val1', 'key2': 'val2' },
-    { 'key1': 'val1', 'key2': 'val2' },
-    { 'key1': 'val1', 'key2': 'val2' }
-  ],
-  allowedTagGroups: [
-    { 'key1': 'val1', 'key2': 'val2' },
-    { 'key1': 'val1', 'key2': 'val2' },
-    { 'key1': 'val1', 'key2': 'val2' }
-  ],
   allowGlobalTags: false,
   requiredTagGroups: [
     {

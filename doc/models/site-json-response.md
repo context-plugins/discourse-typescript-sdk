@@ -40,8 +40,8 @@
 | `defaultDarkColorScheme` | `unknown \| null` | Required | - |
 | `censoredRegexp` | `unknown[]` | Required | - |
 | `customEmojiTranslation` | `unknown` | Required | - |
-| `watchedWordsReplace` | `string \| null` | Required | - |
-| `watchedWordsLink` | `string \| null` | Required | - |
+| `watchedWordsReplace` | `unknown \| null` | Required | - |
+| `watchedWordsLink` | `unknown \| null` | Required | - |
 | `markdownAdditionalOptions` | `unknown \| undefined` | Optional | - |
 | `hashtagConfigurations` | `unknown \| undefined` | Optional | - |
 | `hashtagIcons` | `unknown \| undefined` | Optional | - |
@@ -247,8 +247,8 @@ const siteJsonResponse: SiteJsonResponse = {
     { 'key1': 'val1', 'key2': 'val2' }
   ],
   customEmojiTranslation: { 'key1': 'val1', 'key2': 'val2' },
-  watchedWordsReplace: 'watched_words_replace4',
-  watchedWordsLink: 'watched_words_link6',
+  watchedWordsReplace: { 'key1': 'val1', 'key2': 'val2' },
+  watchedWordsLink: { 'key1': 'val1', 'key2': 'val2' },
   categories: [
     {
       id: 16,
@@ -268,7 +268,7 @@ const siteJsonResponse: SiteJsonResponse = {
       hasChildren: false,
       subcategoryCount: 74,
       sortOrder: 'sort_order8',
-      sortAscending: 'sort_ascending8',
+      sortAscending: false,
       showSubcategoryList: false,
       numFeaturedTopics: 140,
       defaultView: 'default_view2',
@@ -277,13 +277,6 @@ const siteJsonResponse: SiteJsonResponse = {
       defaultListFilter: 'default_list_filter6',
       minimumRequiredTags: 172,
       navigateToFirstPostAfterRead: false,
-      allowedTags: [
-        { 'key1': 'val1', 'key2': 'val2' }
-      ],
-      allowedTagGroups: [
-        { 'key1': 'val1', 'key2': 'val2' },
-        { 'key1': 'val1', 'key2': 'val2' }
-      ],
       allowGlobalTags: false,
       requiredTagGroups: [
         {
