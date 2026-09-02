@@ -1,13 +1,17 @@
+# Discourse
 
-# Getting Started with Discourse API Documentation
+[![Built with APIMatic][apimatic-badge]][apimatic-url] [![License: MIT][license-badge]][license-url]
 
-## Introduction
+The Discourse SDK for TypeScript provides typed access to the Discourse REST APIs from Node.js and the browser.
+
+> [!TIP]
+> **Looking for a specific signature, request field, model, enum or error type?** This SDK ships a generated, machine-readable **[SDK map](sdk-map.md)** — a lookup index of the whole TypeScript surface. Consult it **before** grepping or scanning the source tree; it answers most contract questions directly and, where a source file is genuinely needed, names the exact one to open. Details under [SDK map](#sdk-map).
 
 This page contains the documentation on how to use Discourse through API calls.
 
 > Note: For any endpoints not listed you can follow the
-> [reverse engineer the Discourse API](https://meta.discourse.org/t/-/20576)
-> guide to figure out how to use an API endpoint.
+[reverse engineer the Discourse API](https://meta.discourse.org/t/-/20576)
+guide to figure out how to use an API endpoint.
 
 ### Request Content-Type
 
@@ -60,197 +64,88 @@ curl -X POST "http://127.0.0.1:3000/categories" \
 If an endpoint accepts a boolean be sure to specify it as a lowercase
 `true` or `false` value unless noted otherwise.
 
-## Building
 
-### Requirements
-
-The SDK relies on **Node.js** and **npm** (to resolve dependencies). It also requires **Typescript version >=4.1**. You can download and install Node.js and [npm](https://www.npmjs.com/) from [the official Node.js website](https://nodejs.org/en/download/).
-
-> **NOTE:** npm is installed by default when Node.js is installed.
-
-### Verify Successful Installation
-
-Run the following commands in the command prompt or shell of your choice to check if Node.js and npm are successfully installed:
-
-* Node.js: `node --version`
-
-* npm: `npm --version`
-
-![Version Check](https://apidocs.io/illustration/typescript?workspaceFolder=Discourse&step=versionCheck)
-
-### Install Dependencies
-
-- To resolve all dependencies, go to the **SDK root directory** and run the following command with npm:
-
-```bash
-npm install
-```
-
-- This will install all dependencies in the **node_modules** folder.
-
-![Resolve Dependencies](https://apidocs.io/illustration/typescript?workspaceFolder=Discourse&workspaceName=discourse&step=resolveDependency)
+---
 
 ## Installation
 
-The following section explains how to use the generated library in a new project.
-
-### 1. Initialize the Node Project
-
-- Open an IDE/text editor for JavaScript like Visual Studio Code. The basic workflow presented here is also applicable if you prefer using a different editor or IDE.
-
-- Click on **File** and select **Open Folder**. Select an empty folder of your project, the folder will become visible in the sidebar on the left.
-
-![Open Folder](https://apidocs.io/illustration/typescript?step=openProject)
-
-- To initialize the Node project, click on **Terminal** and select **New Terminal**. Execute the following command in the terminal:
+The SDK compiles to `dist/` before it can be referenced — run its `build` script once in the SDK folder, then add it to your project by path:
 
 ```bash
-npm init --y
+npm install <path-to-sdk>
 ```
 
-![Initialize the Node Project](https://apidocs.io/illustration/typescript?step=initializeProject)
+---
 
-### 2. Add Dependencies to the Client Library
+## Quick Start
 
-- The created project manages its dependencies using its `package.json` file. In order to add a dependency on the *Discourse* client library, double click on the `package.json` file in the bar on the left and add the dependency to the package in it.
+### Your first call
 
-![Add Discourse Dependency](https://apidocs.io/illustration/typescript?workspaceFolder=Discourse&workspaceName=discourse&step=importDependency)
-
-- To install the package in the project, run the following command in the terminal:
-
-```bash
-npm install
-```
-
-![Install Discourse Dependency](https://apidocs.io/illustration/typescript?step=installDependency)
-
-## Initialize the API Client
-
-**_Note:_** Documentation for the client can be found [here.](doc/client.md)
-
-The following parameters are configurable for the API Client:
-
-| Parameter | Type | Description |
-|  --- | --- | --- |
-| defaultHost | `string` | *Default*: `'discourse.example.com'` |
-| environment | [`Environment`](README.md#environments) | The API environment. <br> **Default: `Environment.Production`** |
-| timeout | `number` | Timeout for API calls.<br>*Default*: `30000` |
-| httpClientOptions | [`Partial<HttpClientOptions>`](doc/http-client-options.md) | Stable configurable http client options. |
-| unstableHttpClientOptions | `any` | Unstable configurable http client options. |
-| logging | [`PartialLoggingOptions`](doc/partial-logging-options.md) | Logging Configuration to enable logging |
-
-The API client can be initialized as follows:
-
-### Code-Based Client Initialization
+Create one client and reuse it. Configure its behaviour through [ClientOptions](src/client-options.ts).
 
 ```ts
-import { Client, Environment, LogLevel } from 'discourse';
+import { DiscourseClient, ServerEnvironment } from "discourse";
 
-const client = new Client({
-  timeout: 30000,
-  environment: Environment.Production,
-  logging: {
-    logLevel: LogLevel.Info,
-    logRequest: {
-      logBody: true
-    },
-    logResponse: {
-      logHeaders: true
-    }
-  },
-  defaultHost: 'discourse.example.com',
-});
+const client = new DiscourseClient({ serverEnvironment: ServerEnvironment.Production });
 ```
 
-### Configuration-Based Client Initialization
+Every option has a default — see `DEFAULT_CLIENT_OPTIONS` in the same module. `serverEnvironment` is spelled out above so the environment a call reaches is visible where the client is built rather than inherited silently.
+
+### From CommonJS
+
+The package ships both dialects from a single entry, so `require` works with full types. In a TypeScript CommonJS file use the `import ... = require(...)` form — a plain destructuring `require` runs fine but gives you `any`.
 
 ```ts
-import * as path from 'path';
-import * as fs from 'fs';
-import { Client } from 'discourse';
+import sdk = require("discourse");
 
-// Provide absolute path for the configuration file
-const absolutePath = path.resolve('./config.json');
-
-// Read the configuration file content
-const fileContent = fs.readFileSync(absolutePath, 'utf-8');
-
-// Initialize client from JSON configuration content
-const client = Client.fromJsonConfig(fileContent);
+const client = new sdk.DiscourseClient({ serverEnvironment: sdk.ServerEnvironment.Production });
 ```
 
-See the [Configuration-Based Client Initialization](doc/configuration-based-client-initialization.md) section for details.
+---
 
-### Environment-Based Client Initialization
+## Usage
 
-```ts
-import * as dotenv from 'dotenv';
-import * as path from 'path';
-import * as fs from 'fs';
-import { Client } from 'discourse';
+For code examples and error responses, see [API Reference](api-reference.md).
 
-// Optional - Provide absolute path for the .env file
-const absolutePath = path.resolve('./.env');
+---
 
-if (fs.existsSync(absolutePath)) {
-  // Load environment variables from .env file
-  dotenv.config({ path: absolutePath, override: true });
-}
+## SDK map
 
-// Initialize client using environment variables
-const client = Client.fromEnvironment(process.env);
-```
+This SDK ships a generated **SDK map** — [`sdk-map.md`](sdk-map.md) plus the pages under [`map/operations/`](map/operations/discourse-calendar-events.md) — a deterministic, lookup-oriented table of contents of the TypeScript surface, generated alongside the SDK.
 
-See the [Environment-Based Client Initialization](doc/environment-based-client-initialization.md) section for details.
+**Read it before scanning the source.** Whether you are an AI coding assistant or searching by hand, the map answers "what is the exact …" by lookup for every call-level contract, and for anything it does not carry it names the one file that does:
 
-## Environments
+- **[`sdk-map.md`](sdk-map.md)** — the index: client construction, the two error families, the non-throwing `.asApiResult()` form, servers, environments and auth, the model locator with every enum and union, the runtime facts, and the SDK-wide defaults every operation relies on.
+- **[`map/operations/`](map/operations/discourse-calendar-events.md)** — one page per resource: the exact signature and return type, the verb and route, the request body and its media type, a **Fields** table giving every request field its channel, and a **Type sources** table naming the file and schema value of every type the operation mentions.
 
-The SDK can be configured to use a different environment for making API calls. Available environments are:
+Model shapes are **not** duplicated in the map, and not in the API reference either. Both name the type and the file to read; that file is the single source of truth and cannot go stale against the code.
 
-### Fields
+**Each operation block states only what is specific to it.** The SDK-wide defaults are stated once in [`sdk-map.md`](sdk-map.md) — the call shape, the base `ResponseError`, the default server group — and a block departs from one only by saying so, so a block silent on a point is telling you the default applies. Take it and move on rather than opening the source to confirm.
 
-| Name | Description |
-|  --- | --- |
-| Production | **Default** |
+### Which one to reach for
 
-## List of APIs
+The map and the [API reference](api-reference.md) answer different questions, and both are generated from this SDK so they stay in lockstep with the code.
 
-* [Discourse Calendar-Events](doc/controllers/discourse-calendar-events.md)
-* [Private Messages](doc/controllers/private-messages.md)
-* [Backups](doc/controllers/backups.md)
-* [Badges](doc/controllers/badges.md)
-* [Categories](doc/controllers/categories.md)
-* [Groups](doc/controllers/groups.md)
-* [Invites](doc/controllers/invites.md)
-* [Notifications](doc/controllers/notifications.md)
-* [Posts](doc/controllers/posts.md)
-* [Search](doc/controllers/search.md)
-* [Site](doc/controllers/site.md)
-* [Tags](doc/controllers/tags.md)
-* [Topics](doc/controllers/topics.md)
-* [Uploads](doc/controllers/uploads.md)
-* [Users](doc/controllers/users.md)
+| Use | For |
+| --- | --- |
+| **[`sdk-map.md`](sdk-map.md) + [`map/operations/`](map/operations/discourse-calendar-events.md)** | Traversing the SDK and working out its surface — locating the operation you need (this SDK exposes **110 operations**), its exact signature, which credential it sends, which channel every request field travels on, which error type it rejects with and how to read it, and the file behind any type. This is the index to consume the SDK from, and the one to reach for first. |
+| **[`api-reference.md`](api-reference.md)** | Usage guidance for a single operation once you know which one you want — a code sample, per-parameter descriptions, and the success and error types it resolves or rejects with. |
 
-## SDK Infrastructure
+---
 
-### Configuration
+## License
 
-* [HttpClientOptions](doc/http-client-options.md)
-* [RetryConfiguration](doc/retry-configuration.md)
-* [ProxySettings](doc/proxy-settings.md)
-* [Configuration-Based Client Initialization](doc/configuration-based-client-initialization.md)
-* [Environment-Based Client Initialization](doc/environment-based-client-initialization.md)
-* [PartialLoggingOptions](doc/partial-logging-options.md)
-* [PartialRequestLoggingOptions](doc/partial-request-logging-options.md)
-* [PartialResponseLoggingOptions](doc/partial-response-logging-options.md)
-* [LoggerInterface](doc/logger-interface.md)
+This SDK is distributed under the [MIT License](LICENSE).
 
-### HTTP
+---
 
-* [HttpRequest](doc/http-request.md)
+## Support
 
-### Utilities
+Refer to the [API reference](api-reference.md) for detailed information on available operations with code samples.
 
-* [ApiResponse](doc/api-response.md)
-* [ApiError](doc/api-error.md)
+---
 
+[license-url]: LICENSE
+[license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
+[apimatic-url]: https://www.apimatic.io
+[apimatic-badge]: https://www.apimatic.io/hubfs/Built-with-APIMatic-badge.svg
