@@ -9,7 +9,7 @@ export type Meta1 = {
 
 export const meta1Schema: Schema<Meta1> = s.object<Meta1>({
   lastUpdatedAt: s.nullable(s.string()),
-  totalRowsDirectoryItems: s.number(),
+  totalRowsDirectoryItems: s.int(),
   loadMoreDirectoryItems: s.string(),
   _keysMap: {
     lastUpdatedAt: "last_updated_at",

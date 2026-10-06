@@ -11,8 +11,8 @@ export type Post = {
 };
 
 export const postSchema: Schema<Post> = s.object<Post>({
-  id: s.number(),
-  postNumber: s.number(),
+  id: s.int(),
+  postNumber: s.int(),
   url: s.string(),
   categorySlug: s.string(),
   topic: topicSchema,

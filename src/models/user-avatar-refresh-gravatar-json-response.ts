@@ -8,7 +8,7 @@ export type UserAvatarRefreshGravatarJsonResponse = {
 
 export const userAvatarRefreshGravatarJsonResponseSchema: Schema<UserAvatarRefreshGravatarJsonResponse> =
   s.object<UserAvatarRefreshGravatarJsonResponse>({
-    gravatarUploadId: s.nullable(s.number()),
+    gravatarUploadId: s.nullable(s.int()),
     gravatarAvatarTemplate: s.nullable(s.string()),
     _keysMap: {
       gravatarUploadId: "gravatar_upload_id",

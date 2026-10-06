@@ -13,7 +13,7 @@ export type GroupsJsonResponse2 = {
 export const groupsJsonResponse2Schema: Schema<GroupsJsonResponse2> = s.object<GroupsJsonResponse2>({
   groups: s.array(s.lazy(() => group4Schema)),
   extras: extras2Schema,
-  totalRowsGroups: s.number(),
+  totalRowsGroups: s.int(),
   loadMoreGroups: s.string(),
   _keysMap: {
     totalRowsGroups: "total_rows_groups",

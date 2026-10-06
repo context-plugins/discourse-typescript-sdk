@@ -12,7 +12,7 @@ export type TopicList = {
 
 export const topicListSchema: Schema<TopicList> = s.object<TopicList>({
   canCreateTopic: s.boolean(),
-  perPage: s.number(),
+  perPage: s.int(),
   topTags: s.optional(s.array(s.lazy(() => topTagSchema))),
   topics: s.array(s.lazy(() => topic1Schema)),
   _keysMap: {

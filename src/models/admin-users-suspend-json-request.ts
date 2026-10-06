@@ -4,6 +4,7 @@ import type { Schema } from "../core/validation/schema.js";
 export type AdminUsersSuspendJsonRequest = {
   suspendUntil: string;
   reason: string;
+  /** Will send an email with this message when present */
   message?: string;
   postAction?: string;
 };

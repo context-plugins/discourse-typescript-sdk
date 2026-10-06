@@ -9,7 +9,7 @@ export type SilencedBy = {
 };
 
 export const silencedBySchema: Schema<SilencedBy> = s.object<SilencedBy>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),

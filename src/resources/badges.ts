@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   adminBadgesJsonRequestSchema,
@@ -39,31 +40,59 @@ export class Badges {
     this.#servers = servers;
   }
 
-  adminListBadges(options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminBadgesJsonResponse, ResponseError>(
+  /**
+   * List badges
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  adminListBadges(options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/badges.json"),
+        urlTemplate: this.#servers.default("/admin/badges.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminBadgesJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Create badge
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createBadge(
     request: Badges.CreateBadgeRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminBadgesJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<AdminBadgesJsonResponse1, ResponseError>(
+  ): ApiPromise<AdminBadgesJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin/badges.json"),
+        urlTemplate: this.#servers.default("/admin/badges.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -72,62 +101,98 @@ export class Badges {
       },
       {
         success: { kind: "json", schema: adminBadgesJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  deleteBadge(
-    request: Badges.DeleteBadgeRequest,
-    options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  /**
+   * Delete badge
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  deleteBadge(request: Badges.DeleteBadgeRequest, options?: RequestOptions): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/admin/badges/{id}.json"),
+        urlTemplate: this.#servers.default("/admin/badges/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List badges for a user
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   listUserBadges(
     request: Badges.ListUserBadgesRequest,
     options?: RequestOptions,
-  ): ApiPromise<UserBadgesJsonResponse, ResponseError> {
-    return this.#rawClient.execute<UserBadgesJsonResponse, ResponseError>(
+  ): ApiPromise<UserBadgesJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/user-badges/{username}.json"),
+        urlTemplate: this.#servers.default("/user-badges/{username}.json"),
         auth: noneAuth,
         pathParams: [{ name: "username", value: request.username, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: userBadgesJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update badge
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updateBadge(
     request: Badges.UpdateBadgeRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminBadgesJsonResponse2, ResponseError> {
-    return this.#rawClient.execute<AdminBadgesJsonResponse2, ResponseError>(
+  ): ApiPromise<AdminBadgesJsonResponse2, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/badges/{id}.json"),
+        urlTemplate: this.#servers.default("/admin/badges/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -136,7 +201,7 @@ export class Badges {
       },
       {
         success: { kind: "json", schema: adminBadgesJsonResponse2Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

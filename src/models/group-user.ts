@@ -9,9 +9,9 @@ export type GroupUser = {
 };
 
 export const groupUserSchema: Schema<GroupUser> = s.object<GroupUser>({
-  groupId: s.number(),
-  userId: s.number(),
-  notificationLevel: s.number(),
+  groupId: s.int(),
+  userId: s.int(),
+  notificationLevel: s.int(),
   owner: s.optional(s.boolean()),
   _keysMap: {
     groupId: "group_id",

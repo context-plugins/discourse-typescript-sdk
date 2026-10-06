@@ -16,7 +16,7 @@ export const tTimerJsonResponseSchema: Schema<TTimerJsonResponse> = s.object<TTi
   duration: s.optionalNullable(s.string()),
   basedOnLastPost: s.optional(s.boolean()),
   closed: s.optional(s.boolean()),
-  categoryId: s.optionalNullable(s.number()),
+  categoryId: s.optionalNullable(s.int()),
   _keysMap: {
     executeAt: "execute_at",
     basedOnLastPost: "based_on_last_post",

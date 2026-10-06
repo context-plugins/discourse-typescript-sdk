@@ -6,6 +6,7 @@ import { uploadType1Schema, type UploadType1 } from "./upload-type1.js";
 export type UploadsCreateMultipartJsonRequest = {
   uploadType: UploadType1;
   fileName: string;
+  /** File size should be represented in bytes. */
   fileSize: number;
   metadata?: Metadata;
 };
@@ -14,7 +15,7 @@ export const uploadsCreateMultipartJsonRequestSchema: Schema<UploadsCreateMultip
   s.object<UploadsCreateMultipartJsonRequest>({
     uploadType: uploadType1Schema,
     fileName: s.string(),
-    fileSize: s.number(),
+    fileSize: s.int(),
     metadata: s.optional(s.lazy(() => metadataSchema)),
     _keysMap: {
       uploadType: "upload_type",

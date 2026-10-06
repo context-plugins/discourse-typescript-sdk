@@ -4,16 +4,17 @@
 
 Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 operations · Request types: namespace `Categories`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createCategory
 
-- **Signature**: `createCategory(request: Categories.CreateCategoryRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse, ResponseError>`
+- **Signature**: `createCategory(request: Categories.CreateCategoryRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse, ApiError>`
 - **Wire**: `POST /categories.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `CategoriesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Categories.CreateCategoryRequest` (1):
 
@@ -28,12 +29,12 @@ Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 oper
 
 ### getCategory
 
-- **Signature**: `getCategory(request: Categories.GetCategoryRequest, options?: RequestOptions): ApiPromise<CShowJsonResponse, ResponseError>`
+- **Signature**: `getCategory(request: Categories.GetCategoryRequest, options?: RequestOptions): ApiPromise<CShowJsonResponse, ApiError>`
 - **Wire**: `GET /c/{id}/show.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CShowJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Categories.GetCategoryRequest` (1):
 
@@ -47,12 +48,12 @@ Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 oper
 
 ### getSite
 
-- **Signature**: `getSite(options?: RequestOptions): ApiPromise<SiteJsonResponse, ResponseError>`
+- **Signature**: `getSite(options?: RequestOptions): ApiPromise<SiteJsonResponse, ApiError>`
 - **Wire**: `GET /site.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -60,12 +61,12 @@ Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 oper
 
 ### listCategories
 
-- **Signature**: `listCategories(request: Categories.ListCategoriesRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse1, ResponseError>`
+- **Signature**: `listCategories(request: Categories.ListCategoriesRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse1, ApiError>`
 - **Wire**: `GET /categories.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CategoriesJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Categories.ListCategoriesRequest` (1):
 
@@ -79,12 +80,12 @@ Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 oper
 
 ### listCategoryTopics
 
-- **Signature**: `listCategoryTopics(request: Categories.ListCategoryTopicsRequest, options?: RequestOptions): ApiPromise<CJsonResponse, ResponseError>`
+- **Signature**: `listCategoryTopics(request: Categories.ListCategoryTopicsRequest, options?: RequestOptions): ApiPromise<CJsonResponse, ApiError>`
 - **Wire**: `GET /c/{slug}/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Categories.ListCategoryTopicsRequest` (2):
 
@@ -99,12 +100,13 @@ Accessor: `client.categories` · Source: `src/resources/categories.ts` · 6 oper
 
 ### updateCategory
 
-- **Signature**: `updateCategory(request: Categories.UpdateCategoryRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse2, ResponseError>`
+- **Signature**: `updateCategory(request: Categories.UpdateCategoryRequest, options?: RequestOptions): ApiPromise<CategoriesJsonResponse2, ApiError>`
 - **Wire**: `PUT /categories/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `CategoriesJsonResponse2`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Categories.UpdateCategoryRequest` (2):
 

@@ -10,9 +10,9 @@ export type BadgeGrouping = {
 };
 
 export const badgeGroupingSchema: Schema<BadgeGrouping> = s.object<BadgeGrouping>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   description: s.nullable(s.string()),
-  position: s.number(),
+  position: s.int(),
   system: s.boolean(),
 });

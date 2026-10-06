@@ -4,16 +4,17 @@
 
 Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations · Request types: namespace `Admin`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### activateUser
 
-- **Signature**: `activateUser(request: Admin.ActivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersActivateJsonResponse, ResponseError>`
+- **Signature**: `activateUser(request: Admin.ActivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersActivateJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/activate.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersActivateJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.ActivateUserRequest` (1):
 
@@ -27,12 +28,12 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### adminGetUser
 
-- **Signature**: `adminGetUser(request: Admin.AdminGetUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse, ResponseError>`
+- **Signature**: `adminGetUser(request: Admin.AdminGetUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse, ApiError>`
 - **Wire**: `GET /admin/users/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.AdminGetUserRequest` (1):
 
@@ -46,12 +47,12 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### adminListUsers
 
-- **Signature**: `adminListUsers(request: Admin.AdminListUsersRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse2[], ResponseError>`
+- **Signature**: `adminListUsers(request: Admin.AdminListUsersRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse2[], ApiError>`
 - **Wire**: `GET /admin/users.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersJsonResponse2[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.AdminListUsersRequest` (7):
 
@@ -73,12 +74,12 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### adminListUsersFlag
 
-- **Signature**: `adminListUsersFlag(request: Admin.AdminListUsersFlagRequest, options?: RequestOptions): ApiPromise<AdminUsersListJsonResponse[], ResponseError>`
+- **Signature**: `adminListUsersFlag(request: Admin.AdminListUsersFlagRequest, options?: RequestOptions): ApiPromise<AdminUsersListJsonResponse[], ApiError>`
 - **Wire**: `GET /admin/users/list/{flag}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersListJsonResponse[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.AdminListUsersFlagRequest` (8):
 
@@ -102,12 +103,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### anonymizeUser
 
-- **Signature**: `anonymizeUser(request: Admin.AnonymizeUserRequest, options?: RequestOptions): ApiPromise<AdminUsersAnonymizeJsonResponse, ResponseError>`
+- **Signature**: `anonymizeUser(request: Admin.AnonymizeUserRequest, options?: RequestOptions): ApiPromise<AdminUsersAnonymizeJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/anonymize.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersAnonymizeJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.AnonymizeUserRequest` (1):
 
@@ -121,12 +123,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### deactivateUser
 
-- **Signature**: `deactivateUser(request: Admin.DeactivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersDeactivateJsonResponse, ResponseError>`
+- **Signature**: `deactivateUser(request: Admin.DeactivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersDeactivateJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/deactivate.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersDeactivateJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.DeactivateUserRequest` (1):
 
@@ -140,12 +143,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### deleteUser
 
-- **Signature**: `deleteUser(request: Admin.DeleteUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse1, ResponseError>`
+- **Signature**: `deleteUser(request: Admin.DeleteUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse1, ApiError>`
 - **Wire**: `DELETE /admin/users/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.DeleteUserRequest` (2):
 
@@ -161,12 +165,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### logOutUser
 
-- **Signature**: `logOutUser(request: Admin.LogOutUserRequest, options?: RequestOptions): ApiPromise<AdminUsersLogOutJsonResponse, ResponseError>`
+- **Signature**: `logOutUser(request: Admin.LogOutUserRequest, options?: RequestOptions): ApiPromise<AdminUsersLogOutJsonResponse, ApiError>`
 - **Wire**: `POST /admin/users/{id}/log_out.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersLogOutJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.LogOutUserRequest` (1):
 
@@ -180,12 +185,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### refreshGravatar
 
-- **Signature**: `refreshGravatar(request: Admin.RefreshGravatarRequest, options?: RequestOptions): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ResponseError>`
+- **Signature**: `refreshGravatar(request: Admin.RefreshGravatarRequest, options?: RequestOptions): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ApiError>`
 - **Wire**: `POST /user_avatar/{username}/refresh_gravatar.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UserAvatarRefreshGravatarJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.RefreshGravatarRequest` (1):
 
@@ -199,12 +205,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### silenceUser
 
-- **Signature**: `silenceUser(request: Admin.SilenceUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSilenceJsonResponse, ResponseError>`
+- **Signature**: `silenceUser(request: Admin.SilenceUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSilenceJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/silence.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersSilenceJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.SilenceUserRequest` (2):
 
@@ -220,12 +227,13 @@ Accessor: `client.admin` · Source: `src/resources/admin.ts` · 11 operations ·
 
 ### suspendUser
 
-- **Signature**: `suspendUser(request: Admin.SuspendUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSuspendJsonResponse, ResponseError>`
+- **Signature**: `suspendUser(request: Admin.SuspendUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSuspendJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/suspend.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersSuspendJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Admin.SuspendUserRequest` (2):
 

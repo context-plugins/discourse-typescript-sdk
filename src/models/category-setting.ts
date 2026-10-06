@@ -12,8 +12,8 @@ export type CategorySetting = {
 };
 
 export const categorySettingSchema: Schema<CategorySetting> = s.object<CategorySetting>({
-  autoBumpCooldownDays: s.optional(s.number()),
-  numAutoBumpDaily: s.optionalNullable(s.number()),
+  autoBumpCooldownDays: s.optional(s.int()),
+  numAutoBumpDaily: s.optionalNullable(s.int()),
   requireReplyApproval: s.optionalNullable(s.boolean()),
   requireTopicApproval: s.optionalNullable(s.boolean()),
   nestedRepliesDefault: s.optionalNullable(s.boolean()),

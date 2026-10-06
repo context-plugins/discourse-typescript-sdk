@@ -4,16 +4,17 @@
 
 Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations · Request and error types: namespace `Topics`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### bookmarkTopic
 
-- **Signature**: `bookmarkTopic(request: Topics.BookmarkTopicRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `bookmarkTopic(request: Topics.BookmarkTopicRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /t/{id}/bookmark.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.BookmarkTopicRequest` (3):
 
@@ -25,12 +26,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### createTopicPostPm
 
-- **Signature**: `createTopicPostPm(request: Topics.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ResponseError>`
+- **Signature**: `createTopicPostPm(request: Topics.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ApiError>`
 - **Wire**: `POST /posts.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostsJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.CreateTopicPostPmRequest` (3):
 
@@ -47,12 +49,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### createTopicTimer
 
-- **Signature**: `createTopicTimer(request: Topics.CreateTopicTimerRequest, options?: RequestOptions): ApiPromise<TTimerJsonResponse, ResponseError>`
+- **Signature**: `createTopicTimer(request: Topics.CreateTopicTimerRequest, options?: RequestOptions): ApiPromise<TTimerJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/timer.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TTimerJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.CreateTopicTimerRequest` (4):
 
@@ -70,12 +73,12 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### getSpecificPostsFromTopic
 
-- **Signature**: `getSpecificPostsFromTopic(request: Topics.GetSpecificPostsFromTopicRequest, options?: RequestOptions): ApiPromise<TPostsJsonResponse, ResponseError>`
+- **Signature**: `getSpecificPostsFromTopic(request: Topics.GetSpecificPostsFromTopicRequest, options?: RequestOptions): ApiPromise<TPostsJsonResponse, ApiError>`
 - **Wire**: `GET /t/{id}/posts.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TPostsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.GetSpecificPostsFromTopicRequest` (3):
 
@@ -91,12 +94,12 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### getTopic
 
-- **Signature**: `getTopic(request: Topics.GetTopicRequest, options?: RequestOptions): ApiPromise<TJsonResponse, ResponseError>`
+- **Signature**: `getTopic(request: Topics.GetTopicRequest, options?: RequestOptions): ApiPromise<TJsonResponse, ApiError>`
 - **Wire**: `GET /t/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.GetTopicRequest` (3):
 
@@ -117,7 +120,7 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `Topics.GetTopicByExternalIdError` — **typed arms**, narrowed on `err.payload.kind`
+- **Error**: `DiscourseError` with `kind: "api"`, an instance of `Topics.GetTopicByExternalIdError` — **typed arms**, narrowed on `err.payload.kind`
 - **Error arms**: `"error301"` [301] no body · `"undeclared"` [any other] `rawBody: ArrayBuffer`
 
 **Fields** — `Topics.GetTopicByExternalIdRequest` (1):
@@ -128,12 +131,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### inviteGroupToTopic
 
-- **Signature**: `inviteGroupToTopic(request: Topics.InviteGroupToTopicRequest, options?: RequestOptions): ApiPromise<TInviteGroupJsonResponse, ResponseError>`
+- **Signature**: `inviteGroupToTopic(request: Topics.InviteGroupToTopicRequest, options?: RequestOptions): ApiPromise<TInviteGroupJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/invite-group.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TInviteGroupJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.InviteGroupToTopicRequest` (4):
 
@@ -151,12 +155,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### inviteToTopic
 
-- **Signature**: `inviteToTopic(request: Topics.InviteToTopicRequest, options?: RequestOptions): ApiPromise<TInviteJsonResponse, ResponseError>`
+- **Signature**: `inviteToTopic(request: Topics.InviteToTopicRequest, options?: RequestOptions): ApiPromise<TInviteJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/invite.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TInviteJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.InviteToTopicRequest` (4):
 
@@ -174,12 +179,12 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### listLatestTopics
 
-- **Signature**: `listLatestTopics(request: Topics.ListLatestTopicsRequest, options?: RequestOptions): ApiPromise<LatestJsonResponse, ResponseError>`
+- **Signature**: `listLatestTopics(request: Topics.ListLatestTopicsRequest, options?: RequestOptions): ApiPromise<LatestJsonResponse, ApiError>`
 - **Wire**: `GET /latest.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `LatestJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.ListLatestTopicsRequest` (5):
 
@@ -197,12 +202,12 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### listTopTopics
 
-- **Signature**: `listTopTopics(request: Topics.ListTopTopicsRequest, options?: RequestOptions): ApiPromise<TopJsonResponse, ResponseError>`
+- **Signature**: `listTopTopics(request: Topics.ListTopTopicsRequest, options?: RequestOptions): ApiPromise<TopJsonResponse, ApiError>`
 - **Wire**: `GET /top.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TopJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.ListTopTopicsRequest` (4):
 
@@ -219,12 +224,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### removeTopic
 
-- **Signature**: `removeTopic(request: Topics.RemoveTopicRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `removeTopic(request: Topics.RemoveTopicRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /t/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.RemoveTopicRequest` (3):
 
@@ -236,12 +242,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### setNotificationLevel
 
-- **Signature**: `setNotificationLevel(request: Topics.SetNotificationLevelRequest, options?: RequestOptions): ApiPromise<TNotificationsJsonResponse, ResponseError>`
+- **Signature**: `setNotificationLevel(request: Topics.SetNotificationLevelRequest, options?: RequestOptions): ApiPromise<TNotificationsJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/notifications.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TNotificationsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.SetNotificationLevelRequest` (4):
 
@@ -259,12 +266,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### updateTopic
 
-- **Signature**: `updateTopic(request: Topics.UpdateTopicRequest, options?: RequestOptions): ApiPromise<TJsonResponse1, ResponseError>`
+- **Signature**: `updateTopic(request: Topics.UpdateTopicRequest, options?: RequestOptions): ApiPromise<TJsonResponse1, ApiError>`
 - **Wire**: `PUT /t/-/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.UpdateTopicRequest` (4):
 
@@ -282,12 +290,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### updateTopicStatus
 
-- **Signature**: `updateTopicStatus(request: Topics.UpdateTopicStatusRequest, options?: RequestOptions): ApiPromise<TStatusJsonResponse, ResponseError>`
+- **Signature**: `updateTopicStatus(request: Topics.UpdateTopicStatusRequest, options?: RequestOptions): ApiPromise<TStatusJsonResponse, ApiError>`
 - **Wire**: `PUT /t/{id}/status.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TStatusJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.UpdateTopicStatusRequest` (4):
 
@@ -305,12 +314,13 @@ Accessor: `client.topics` · Source: `src/resources/topics.ts` · 15 operations 
 
 ### updateTopicTimestamp
 
-- **Signature**: `updateTopicTimestamp(request: Topics.UpdateTopicTimestampRequest, options?: RequestOptions): ApiPromise<TChangeTimestampJsonResponse, ResponseError>`
+- **Signature**: `updateTopicTimestamp(request: Topics.UpdateTopicTimestampRequest, options?: RequestOptions): ApiPromise<TChangeTimestampJsonResponse, ApiError>`
 - **Wire**: `PUT /t/{id}/change-timestamp.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TChangeTimestampJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Topics.UpdateTopicTimestampRequest` (4):
 

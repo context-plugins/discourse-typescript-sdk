@@ -4,16 +4,17 @@
 
 Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations · Request types: namespace `Users`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### activateUser
 
-- **Signature**: `activateUser(request: Users.ActivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersActivateJsonResponse, ResponseError>`
+- **Signature**: `activateUser(request: Users.ActivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersActivateJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/activate.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersActivateJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.ActivateUserRequest` (1):
 
@@ -27,12 +28,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### adminGetUser
 
-- **Signature**: `adminGetUser(request: Users.AdminGetUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse, ResponseError>`
+- **Signature**: `adminGetUser(request: Users.AdminGetUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse, ApiError>`
 - **Wire**: `GET /admin/users/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.AdminGetUserRequest` (1):
 
@@ -46,12 +47,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### adminListUsers
 
-- **Signature**: `adminListUsers(request: Users.AdminListUsersRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse2[], ResponseError>`
+- **Signature**: `adminListUsers(request: Users.AdminListUsersRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse2[], ApiError>`
 - **Wire**: `GET /admin/users.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersJsonResponse2[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.AdminListUsersRequest` (7):
 
@@ -73,12 +74,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### adminListUsersFlag
 
-- **Signature**: `adminListUsersFlag(request: Users.AdminListUsersFlagRequest, options?: RequestOptions): ApiPromise<AdminUsersListJsonResponse[], ResponseError>`
+- **Signature**: `adminListUsersFlag(request: Users.AdminListUsersFlagRequest, options?: RequestOptions): ApiPromise<AdminUsersListJsonResponse[], ApiError>`
 - **Wire**: `GET /admin/users/list/{flag}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminUsersListJsonResponse[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.AdminListUsersFlagRequest` (8):
 
@@ -102,12 +103,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### anonymizeUser
 
-- **Signature**: `anonymizeUser(request: Users.AnonymizeUserRequest, options?: RequestOptions): ApiPromise<AdminUsersAnonymizeJsonResponse, ResponseError>`
+- **Signature**: `anonymizeUser(request: Users.AnonymizeUserRequest, options?: RequestOptions): ApiPromise<AdminUsersAnonymizeJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/anonymize.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersAnonymizeJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.AnonymizeUserRequest` (1):
 
@@ -121,12 +123,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### changePassword
 
-- **Signature**: `changePassword(request: Users.ChangePasswordRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `changePassword(request: Users.ChangePasswordRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /users/password-reset/{token}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.ChangePasswordRequest` (2):
 
@@ -141,12 +144,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### createUser
 
-- **Signature**: `createUser(request: Users.CreateUserRequest, options?: RequestOptions): ApiPromise<UsersJsonResponse, ResponseError>`
+- **Signature**: `createUser(request: Users.CreateUserRequest, options?: RequestOptions): ApiPromise<UsersJsonResponse, ApiError>`
 - **Wire**: `POST /users.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UsersJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.CreateUserRequest` (3):
 
@@ -163,12 +167,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### deactivateUser
 
-- **Signature**: `deactivateUser(request: Users.DeactivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersDeactivateJsonResponse, ResponseError>`
+- **Signature**: `deactivateUser(request: Users.DeactivateUserRequest, options?: RequestOptions): ApiPromise<AdminUsersDeactivateJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/deactivate.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersDeactivateJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.DeactivateUserRequest` (1):
 
@@ -182,12 +187,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### deleteUser
 
-- **Signature**: `deleteUser(request: Users.DeleteUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse1, ResponseError>`
+- **Signature**: `deleteUser(request: Users.DeleteUserRequest, options?: RequestOptions): ApiPromise<AdminUsersJsonResponse1, ApiError>`
 - **Wire**: `DELETE /admin/users/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.DeleteUserRequest` (2):
 
@@ -203,12 +209,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### getUser
 
-- **Signature**: `getUser(request: Users.GetUserRequest, options?: RequestOptions): ApiPromise<UJsonResponse, ResponseError>`
+- **Signature**: `getUser(request: Users.GetUserRequest, options?: RequestOptions): ApiPromise<UJsonResponse, ApiError>`
 - **Wire**: `GET /u/{username}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.GetUserRequest` (3):
 
@@ -224,12 +230,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### getUserEmails
 
-- **Signature**: `getUserEmails(request: Users.GetUserEmailsRequest, options?: RequestOptions): ApiPromise<UEmailsJsonResponse, ResponseError>`
+- **Signature**: `getUserEmails(request: Users.GetUserEmailsRequest, options?: RequestOptions): ApiPromise<UEmailsJsonResponse, ApiError>`
 - **Wire**: `GET /u/{username}/emails.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UEmailsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.GetUserEmailsRequest` (1):
 
@@ -243,12 +249,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### getUserExternalId
 
-- **Signature**: `getUserExternalId(request: Users.GetUserExternalIdRequest, options?: RequestOptions): ApiPromise<UByExternalJsonResponse, ResponseError>`
+- **Signature**: `getUserExternalId(request: Users.GetUserExternalIdRequest, options?: RequestOptions): ApiPromise<UByExternalJsonResponse, ApiError>`
 - **Wire**: `GET /u/by-external/{external_id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UByExternalJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.GetUserExternalIdRequest` (3):
 
@@ -264,12 +270,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### getUserIdentiyProviderExternalId
 
-- **Signature**: `getUserIdentiyProviderExternalId(request: Users.GetUserIdentiyProviderExternalIdRequest, options?: RequestOptions): ApiPromise<UByExternalJsonResponse, ResponseError>`
+- **Signature**: `getUserIdentiyProviderExternalId(request: Users.GetUserIdentiyProviderExternalIdRequest, options?: RequestOptions): ApiPromise<UByExternalJsonResponse, ApiError>`
 - **Wire**: `GET /u/by-external/{provider}/{external_id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UByExternalJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.GetUserIdentiyProviderExternalIdRequest` (4):
 
@@ -286,12 +292,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### listUserActions
 
-- **Signature**: `listUserActions(request: Users.ListUserActionsRequest, options?: RequestOptions): ApiPromise<UserActionsJsonResponse, ResponseError>`
+- **Signature**: `listUserActions(request: Users.ListUserActionsRequest, options?: RequestOptions): ApiPromise<UserActionsJsonResponse, ApiError>`
 - **Wire**: `GET /user_actions.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserActionsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.ListUserActionsRequest` (3):
 
@@ -307,12 +313,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### listUserBadges
 
-- **Signature**: `listUserBadges(request: Users.ListUserBadgesRequest, options?: RequestOptions): ApiPromise<UserBadgesJsonResponse, ResponseError>`
+- **Signature**: `listUserBadges(request: Users.ListUserBadgesRequest, options?: RequestOptions): ApiPromise<UserBadgesJsonResponse, ApiError>`
 - **Wire**: `GET /user-badges/{username}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserBadgesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.ListUserBadgesRequest` (1):
 
@@ -326,12 +332,12 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### listUsersPublic
 
-- **Signature**: `listUsersPublic(request: Users.ListUsersPublicRequest, options?: RequestOptions): ApiPromise<DirectoryItemsJsonResponse, ResponseError>`
+- **Signature**: `listUsersPublic(request: Users.ListUsersPublicRequest, options?: RequestOptions): ApiPromise<DirectoryItemsJsonResponse, ApiError>`
 - **Wire**: `GET /directory_items.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DirectoryItemsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.ListUsersPublicRequest` (4):
 
@@ -351,12 +357,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### logOutUser
 
-- **Signature**: `logOutUser(request: Users.LogOutUserRequest, options?: RequestOptions): ApiPromise<AdminUsersLogOutJsonResponse, ResponseError>`
+- **Signature**: `logOutUser(request: Users.LogOutUserRequest, options?: RequestOptions): ApiPromise<AdminUsersLogOutJsonResponse, ApiError>`
 - **Wire**: `POST /admin/users/{id}/log_out.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersLogOutJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.LogOutUserRequest` (1):
 
@@ -370,12 +377,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### refreshGravatar
 
-- **Signature**: `refreshGravatar(request: Users.RefreshGravatarRequest, options?: RequestOptions): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ResponseError>`
+- **Signature**: `refreshGravatar(request: Users.RefreshGravatarRequest, options?: RequestOptions): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ApiError>`
 - **Wire**: `POST /user_avatar/{username}/refresh_gravatar.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UserAvatarRefreshGravatarJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.RefreshGravatarRequest` (1):
 
@@ -389,12 +397,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### sendPasswordResetEmail
 
-- **Signature**: `sendPasswordResetEmail(request: Users.SendPasswordResetEmailRequest, options?: RequestOptions): ApiPromise<SessionForgotPasswordJsonResponse, ResponseError>`
+- **Signature**: `sendPasswordResetEmail(request: Users.SendPasswordResetEmailRequest, options?: RequestOptions): ApiPromise<SessionForgotPasswordJsonResponse, ApiError>`
 - **Wire**: `POST /session/forgot_password.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `SessionForgotPasswordJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.SendPasswordResetEmailRequest` (1):
 
@@ -409,12 +418,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### silenceUser
 
-- **Signature**: `silenceUser(request: Users.SilenceUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSilenceJsonResponse, ResponseError>`
+- **Signature**: `silenceUser(request: Users.SilenceUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSilenceJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/silence.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersSilenceJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.SilenceUserRequest` (2):
 
@@ -430,12 +440,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### suspendUser
 
-- **Signature**: `suspendUser(request: Users.SuspendUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSuspendJsonResponse, ResponseError>`
+- **Signature**: `suspendUser(request: Users.SuspendUserRequest, options?: RequestOptions): ApiPromise<AdminUsersSuspendJsonResponse, ApiError>`
 - **Wire**: `PUT /admin/users/{id}/suspend.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminUsersSuspendJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.SuspendUserRequest` (2):
 
@@ -451,12 +462,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### updateAvatar
 
-- **Signature**: `updateAvatar(request: Users.UpdateAvatarRequest, options?: RequestOptions): ApiPromise<UPreferencesAvatarPickJsonResponse, ResponseError>`
+- **Signature**: `updateAvatar(request: Users.UpdateAvatarRequest, options?: RequestOptions): ApiPromise<UPreferencesAvatarPickJsonResponse, ApiError>`
 - **Wire**: `PUT /u/{username}/preferences/avatar/pick.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UPreferencesAvatarPickJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.UpdateAvatarRequest` (2):
 
@@ -472,12 +484,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### updateEmail
 
-- **Signature**: `updateEmail(request: Users.UpdateEmailRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `updateEmail(request: Users.UpdateEmailRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /u/{username}/preferences/email.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.UpdateEmailRequest` (2):
 
@@ -492,12 +505,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### updateUser
 
-- **Signature**: `updateUser(request: Users.UpdateUserRequest, options?: RequestOptions): ApiPromise<UJsonResponse1, ResponseError>`
+- **Signature**: `updateUser(request: Users.UpdateUserRequest, options?: RequestOptions): ApiPromise<UJsonResponse1, ApiError>`
 - **Wire**: `PUT /u/{username}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.UpdateUserRequest` (4):
 
@@ -515,12 +529,13 @@ Accessor: `client.users` · Source: `src/resources/users.ts` · 25 operations ·
 
 ### updateUsername
 
-- **Signature**: `updateUsername(request: Users.UpdateUsernameRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `updateUsername(request: Users.UpdateUsernameRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /u/{username}/preferences/username.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Users.UpdateUsernameRequest` (2):
 

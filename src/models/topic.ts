@@ -10,7 +10,7 @@ export type Topic = {
 };
 
 export const topicSchema: Schema<Topic> = s.object<Topic>({
-  id: s.number(),
+  id: s.int(),
   title: s.string(),
   tags: s.array(s.string()),
   tagsDescriptions: s.record(s.string(), s.unknown()),

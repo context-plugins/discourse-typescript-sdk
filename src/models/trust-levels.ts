@@ -10,9 +10,9 @@ export type TrustLevels = {
 };
 
 export const trustLevelsSchema: Schema<TrustLevels> = s.object<TrustLevels>({
-  newuser: s.number(),
-  basic: s.number(),
-  member: s.number(),
-  regular: s.number(),
-  leader: s.number(),
+  newuser: s.int(),
+  basic: s.int(),
+  member: s.int(),
+  regular: s.int(),
+  leader: s.int(),
 });

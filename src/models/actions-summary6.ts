@@ -7,7 +7,7 @@ export type ActionsSummary6 = {
 };
 
 export const actionsSummary6Schema: Schema<ActionsSummary6> = s.object<ActionsSummary6>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   canAct: s.optional(s.boolean()),
   _keysMap: {
     canAct: "can_act",

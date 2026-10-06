@@ -13,7 +13,7 @@ export type TagGroup1 = {
 };
 
 export const tagGroup1Schema: Schema<TagGroup1> = s.object<TagGroup1>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   tags: s.array(s.lazy(() => tagSchema)),
   parentTag: s.array(s.lazy(() => parentTagSchema)),

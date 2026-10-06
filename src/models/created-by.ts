@@ -9,7 +9,7 @@ export type CreatedBy = {
 };
 
 export const createdBySchema: Schema<CreatedBy> = s.object<CreatedBy>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),

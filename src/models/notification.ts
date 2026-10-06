@@ -15,13 +15,13 @@ export type Notification = {
 };
 
 export const notificationSchema: Schema<Notification> = s.object<Notification>({
-  id: s.optional(s.number()),
-  userId: s.optional(s.number()),
-  notificationType: s.optional(s.number()),
+  id: s.optional(s.int()),
+  userId: s.optional(s.int()),
+  notificationType: s.optional(s.int()),
   read: s.optional(s.boolean()),
   createdAt: s.optional(s.string()),
-  postNumber: s.optionalNullable(s.number()),
-  topicId: s.optionalNullable(s.number()),
+  postNumber: s.optionalNullable(s.int()),
+  topicId: s.optionalNullable(s.int()),
   slug: s.optionalNullable(s.string()),
   data: s.optional(s.lazy(() => dataSchema)),
   _keysMap: {

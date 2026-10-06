@@ -18,7 +18,7 @@ export type TopicFlagType = {
 };
 
 export const topicFlagTypeSchema: Schema<TopicFlagType> = s.object<TopicFlagType>({
-  id: s.nullable(s.number()),
+  id: s.nullable(s.int()),
   nameKey: s.nullable(s.string()),
   name: s.string(),
   description: s.string(),
@@ -28,7 +28,7 @@ export const topicFlagTypeSchema: Schema<TopicFlagType> = s.object<TopicFlagType
   enabled: s.boolean(),
   appliesTo: s.array(s.record(s.string(), s.unknown())),
   isUsed: s.boolean(),
-  position: s.optional(s.number()),
+  position: s.optional(s.int()),
   autoActionType: s.boolean(),
   system: s.optional(s.boolean()),
   _keysMap: {

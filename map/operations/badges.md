@@ -4,16 +4,16 @@
 
 Accessor: `client.badges` · Source: `src/resources/badges.ts` · 5 operations · Request types: namespace `Badges`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adminListBadges
 
-- **Signature**: `adminListBadges(options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse, ResponseError>`
+- **Signature**: `adminListBadges(options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse, ApiError>`
 - **Wire**: `GET /admin/badges.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminBadgesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -21,12 +21,13 @@ Accessor: `client.badges` · Source: `src/resources/badges.ts` · 5 operations �
 
 ### createBadge
 
-- **Signature**: `createBadge(request: Badges.CreateBadgeRequest, options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse1, ResponseError>`
+- **Signature**: `createBadge(request: Badges.CreateBadgeRequest, options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse1, ApiError>`
 - **Wire**: `POST /admin/badges.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminBadgesJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Badges.CreateBadgeRequest` (1):
 
@@ -41,12 +42,13 @@ Accessor: `client.badges` · Source: `src/resources/badges.ts` · 5 operations �
 
 ### deleteBadge
 
-- **Signature**: `deleteBadge(request: Badges.DeleteBadgeRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deleteBadge(request: Badges.DeleteBadgeRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /admin/badges/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Badges.DeleteBadgeRequest` (1):
 
@@ -56,12 +58,12 @@ Accessor: `client.badges` · Source: `src/resources/badges.ts` · 5 operations �
 
 ### listUserBadges
 
-- **Signature**: `listUserBadges(request: Badges.ListUserBadgesRequest, options?: RequestOptions): ApiPromise<UserBadgesJsonResponse, ResponseError>`
+- **Signature**: `listUserBadges(request: Badges.ListUserBadgesRequest, options?: RequestOptions): ApiPromise<UserBadgesJsonResponse, ApiError>`
 - **Wire**: `GET /user-badges/{username}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `UserBadgesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Badges.ListUserBadgesRequest` (1):
 
@@ -75,12 +77,13 @@ Accessor: `client.badges` · Source: `src/resources/badges.ts` · 5 operations �
 
 ### updateBadge
 
-- **Signature**: `updateBadge(request: Badges.UpdateBadgeRequest, options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse2, ResponseError>`
+- **Signature**: `updateBadge(request: Badges.UpdateBadgeRequest, options?: RequestOptions): ApiPromise<AdminBadgesJsonResponse2, ApiError>`
 - **Wire**: `PUT /admin/badges/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminBadgesJsonResponse2`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Badges.UpdateBadgeRequest` (2):
 

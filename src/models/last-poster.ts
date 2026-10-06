@@ -9,7 +9,7 @@ export type LastPoster = {
 };
 
 export const lastPosterSchema: Schema<LastPoster> = s.object<LastPoster>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),

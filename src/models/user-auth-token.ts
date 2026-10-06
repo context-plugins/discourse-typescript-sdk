@@ -15,7 +15,7 @@ export type UserAuthToken = {
 };
 
 export const userAuthTokenSchema: Schema<UserAuthToken> = s.object<UserAuthToken>({
-  id: s.number(),
+  id: s.int(),
   clientIp: s.string(),
   location: s.string(),
   browser: s.string(),

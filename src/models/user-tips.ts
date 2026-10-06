@@ -10,11 +10,11 @@ export type UserTips = {
 };
 
 export const userTipsSchema: Schema<UserTips> = s.object<UserTips>({
-  firstNotification: s.number(),
-  topicTimeline: s.number(),
-  postMenu: s.number(),
-  topicNotificationLevels: s.number(),
-  suggestedTopics: s.number(),
+  firstNotification: s.int(),
+  topicTimeline: s.int(),
+  postMenu: s.int(),
+  topicNotificationLevels: s.int(),
+  suggestedTopics: s.int(),
   _keysMap: {
     firstNotification: "first_notification",
     topicTimeline: "topic_timeline",

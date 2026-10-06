@@ -4,16 +4,16 @@
 
 Accessor: `client.notifications` · Source: `src/resources/notifications.ts` · 2 operations · Request types: namespace `Notifications`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### getNotifications
 
-- **Signature**: `getNotifications(options?: RequestOptions): ApiPromise<NotificationsJsonResponse, ResponseError>`
+- **Signature**: `getNotifications(options?: RequestOptions): ApiPromise<NotificationsJsonResponse, ApiError>`
 - **Wire**: `GET /notifications.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `NotificationsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -21,12 +21,13 @@ Accessor: `client.notifications` · Source: `src/resources/notifications.ts` · 
 
 ### markNotificationsAsRead
 
-- **Signature**: `markNotificationsAsRead(request: Notifications.MarkNotificationsAsReadRequest, options?: RequestOptions): ApiPromise<NotificationsMarkReadJsonResponse, ResponseError>`
+- **Signature**: `markNotificationsAsRead(request: Notifications.MarkNotificationsAsReadRequest, options?: RequestOptions): ApiPromise<NotificationsMarkReadJsonResponse, ApiError>`
 - **Wire**: `PUT /notifications/mark-read.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `NotificationsMarkReadJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Notifications.MarkNotificationsAsReadRequest` (1):
 

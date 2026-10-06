@@ -9,7 +9,7 @@ export type TPostsJsonResponse = {
 
 export const tPostsJsonResponseSchema: Schema<TPostsJsonResponse> = s.object<TPostsJsonResponse>({
   postStream: s.optional(s.lazy(() => postStreamSchema)),
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   _keysMap: {
     postStream: "post_stream",
   },

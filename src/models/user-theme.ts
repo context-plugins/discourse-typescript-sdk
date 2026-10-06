@@ -11,11 +11,11 @@ export type UserTheme = {
 };
 
 export const userThemeSchema: Schema<UserTheme> = s.object<UserTheme>({
-  themeId: s.number(),
+  themeId: s.int(),
   name: s.string(),
   default: s.boolean(),
-  colorSchemeId: s.nullable(s.number()),
-  darkColorSchemeId: s.optionalNullable(s.number()),
+  colorSchemeId: s.nullable(s.int()),
+  darkColorSchemeId: s.optionalNullable(s.int()),
   onlyThemeColorSchemes: s.optional(s.boolean()),
   _keysMap: {
     themeId: "theme_id",

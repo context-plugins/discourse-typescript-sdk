@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   adminBackupsJsonRequestSchema,
@@ -27,15 +28,29 @@ export class Backups {
     this.#servers = servers;
   }
 
+  /**
+   * Create backup
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createBackup(
     request: Backups.CreateBackupRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminBackupsJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<AdminBackupsJsonResponse1, ResponseError>(
+  ): ApiPromise<AdminBackupsJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin/backups.json"),
+        urlTemplate: this.#servers.default("/admin/backups.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -44,64 +59,103 @@ export class Backups {
       },
       {
         success: { kind: "json", schema: adminBackupsJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Download backup
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   downloadBackup(
     request: Backups.DownloadBackupRequest,
     options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  ): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/backups/{filename}"),
+        urlTemplate: this.#servers.default("/admin/backups/{filename}"),
         auth: noneAuth,
         pathParams: [{ name: "filename", value: request.filename, schema: s.string() }],
         query: [{ name: "token", value: request.token, schema: s.string() }],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getBackups(options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse[], ResponseError> {
-    return this.#rawClient.execute<AdminBackupsJsonResponse[], ResponseError>(
+  /**
+   * List backups
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getBackups(options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse[], ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/backups.json"),
+        urlTemplate: this.#servers.default("/admin/backups.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: s.array(s.lazy(() => adminBackupsJsonResponseSchema)) },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Send download backup email
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   sendDownloadBackupEmail(
     request: Backups.SendDownloadBackupEmailRequest,
     options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  ): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/backups/{filename}"),
+        urlTemplate: this.#servers.default("/admin/backups/{filename}"),
         auth: noneAuth,
         pathParams: [{ name: "filename", value: request.filename, schema: s.string() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

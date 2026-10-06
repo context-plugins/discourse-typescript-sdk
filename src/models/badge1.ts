@@ -28,18 +28,18 @@ export type Badge1 = {
 };
 
 export const badge1Schema: Schema<Badge1> = s.object<Badge1>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   description: s.string(),
-  grantCount: s.number(),
+  grantCount: s.int(),
   allowTitle: s.boolean(),
   multipleGrant: s.boolean(),
   icon: s.string(),
   imageUrl: s.nullable(s.string()),
-  imageUploadId: s.nullable(s.number()),
+  imageUploadId: s.nullable(s.int()),
   listable: s.boolean(),
   enabled: s.boolean(),
-  badgeGroupingId: s.number(),
+  badgeGroupingId: s.int(),
   system: s.boolean(),
   longDescription: s.string(),
   slug: s.string(),
@@ -49,7 +49,7 @@ export const badge1Schema: Schema<Badge1> = s.object<Badge1>({
   targetPosts: s.boolean(),
   autoRevoke: s.boolean(),
   showPosts: s.boolean(),
-  badgeTypeId: s.number(),
+  badgeTypeId: s.int(),
   showInPostHeader: s.boolean(),
   _keysMap: {
     grantCount: "grant_count",

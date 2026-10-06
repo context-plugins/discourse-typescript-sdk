@@ -9,7 +9,7 @@ export type SuspendedBy = {
 };
 
 export const suspendedBySchema: Schema<SuspendedBy> = s.object<SuspendedBy>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),

@@ -6,5 +6,5 @@ export type Permissions2 = {
 };
 
 export const permissions2Schema: Schema<Permissions2> = s.object<Permissions2>({
-  everyone: s.optional(s.number()),
+  everyone: s.optional(s.int()),
 });

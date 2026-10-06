@@ -11,8 +11,8 @@ export type Poster6 = {
 export const poster6Schema: Schema<Poster6> = s.object<Poster6>({
   extras: s.optionalNullable(s.string()),
   description: s.optional(s.string()),
-  userId: s.optional(s.number()),
-  primaryGroupId: s.optionalNullable(s.number()),
+  userId: s.optional(s.int()),
+  primaryGroupId: s.optionalNullable(s.int()),
   _keysMap: {
     userId: "user_id",
     primaryGroupId: "primary_group_id",

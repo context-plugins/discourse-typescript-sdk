@@ -9,7 +9,7 @@ export type ReplyToUser = {
 };
 
 export const replyToUserSchema: Schema<ReplyToUser> = s.object<ReplyToUser>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   username: s.string(),
   name: s.optional(s.string()),
   avatarTemplate: s.string(),

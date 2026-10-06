@@ -9,7 +9,7 @@ export type Creator = {
 };
 
 export const creatorSchema: Schema<Creator> = s.object<Creator>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.optionalNullable(s.string()),
   avatarTemplate: s.string(),

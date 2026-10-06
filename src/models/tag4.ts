@@ -9,9 +9,9 @@ export type Tag4 = {
 };
 
 export const tag4Schema: Schema<Tag4> = s.object<Tag4>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   name: s.optional(s.string()),
-  topicCount: s.optional(s.number()),
+  topicCount: s.optional(s.int()),
   staff: s.optional(s.boolean()),
   _keysMap: {
     topicCount: "topic_count",

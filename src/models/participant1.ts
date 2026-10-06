@@ -19,20 +19,20 @@ export type Participant1 = {
 };
 
 export const participant1Schema: Schema<Participant1> = s.object<Participant1>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),
-  postCount: s.number(),
+  postCount: s.int(),
   primaryGroupName: s.nullable(s.string()),
   flairName: s.nullable(s.string()),
   flairUrl: s.nullable(s.string()),
   flairColor: s.nullable(s.string()),
   flairBgColor: s.nullable(s.string()),
-  flairGroupId: s.optionalNullable(s.number()),
+  flairGroupId: s.optionalNullable(s.int()),
   admin: s.boolean(),
   moderator: s.boolean(),
-  trustLevel: s.number(),
+  trustLevel: s.int(),
   _keysMap: {
     avatarTemplate: "avatar_template",
     postCount: "post_count",

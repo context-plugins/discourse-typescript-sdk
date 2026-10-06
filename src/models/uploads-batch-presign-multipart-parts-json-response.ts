@@ -2,6 +2,7 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type UploadsBatchPresignMultipartPartsJsonResponse = {
+  /** The presigned URLs for each part number, which has the part numbers as keys. */
   presignedUrls: Record<string, unknown>;
 };
 

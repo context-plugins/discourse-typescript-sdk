@@ -7,6 +7,6 @@ export type Group6 = {
 };
 
 export const group6Schema: Schema<Group6> = s.object<Group6>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   name: s.optional(s.string()),
 });

@@ -4,16 +4,16 @@
 
 Accessor: `client.discourseCalendarEvents` · Source: `src/resources/discourse-calendar-events.ts` · 2 operations · Request types: namespace `DiscourseCalendarEvents`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### exportEventsIcs
 
-- **Signature**: `exportEventsIcs(request: DiscourseCalendarEvents.ExportEventsIcsRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `exportEventsIcs(request: DiscourseCalendarEvents.ExportEventsIcsRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /discourse-post-event/events.ics`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `DiscourseCalendarEvents.ExportEventsIcsRequest` (7):
 
@@ -34,12 +34,12 @@ Accessor: `client.discourseCalendarEvents` · Source: `src/resources/discourse-c
 
 ### listEvents
 
-- **Signature**: `listEvents(request: DiscourseCalendarEvents.ListEventsRequest, options?: RequestOptions): ApiPromise<DiscoursePostEventEventsJsonResponse, ResponseError>`
+- **Signature**: `listEvents(request: DiscourseCalendarEvents.ListEventsRequest, options?: RequestOptions): ApiPromise<DiscoursePostEventEventsJsonResponse, ApiError>`
 - **Wire**: `GET /discourse-post-event/events.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DiscoursePostEventEventsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `DiscourseCalendarEvents.ListEventsRequest` (9):
 

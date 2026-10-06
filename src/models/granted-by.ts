@@ -13,14 +13,14 @@ export type GrantedBy = {
 };
 
 export const grantedBySchema: Schema<GrantedBy> = s.object<GrantedBy>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),
   flairName: s.nullable(s.string()),
   admin: s.boolean(),
   moderator: s.boolean(),
-  trustLevel: s.number(),
+  trustLevel: s.int(),
   _keysMap: {
     avatarTemplate: "avatar_template",
     flairName: "flair_name",

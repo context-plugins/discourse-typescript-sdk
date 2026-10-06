@@ -10,7 +10,7 @@ export type AdminBackupsJsonResponse = {
 export const adminBackupsJsonResponseSchema: Schema<AdminBackupsJsonResponse> =
   s.object<AdminBackupsJsonResponse>({
     filename: s.string(),
-    size: s.number(),
+    size: s.int(),
     lastModified: s.string(),
     _keysMap: {
       lastModified: "last_modified",

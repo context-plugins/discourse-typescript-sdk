@@ -8,7 +8,7 @@ export type TopTag = {
 };
 
 export const topTagSchema: Schema<TopTag> = s.object<TopTag>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   slug: s.string(),
 });

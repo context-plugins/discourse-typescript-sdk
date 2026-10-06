@@ -54,8 +54,8 @@ export type Event = {
 };
 
 export const eventSchema: Schema<Event> = s.object<Event>({
-  id: s.number(),
-  categoryId: s.nullable(s.number()),
+  id: s.int(),
+  categoryId: s.nullable(s.int()),
   name: s.optionalNullable(s.string()),
   recurrence: s.optionalNullable(s.string()),
   recurrenceUntil: s.optionalNullable(s.dateTime()),
@@ -95,7 +95,7 @@ export const eventSchema: Schema<Event> = s.object<Event>({
   livestream: s.optional(s.boolean()),
   livestreamOnebox: s.optionalNullable(s.string()),
   isZoomLivestream: s.optional(s.boolean()),
-  maxAttendees: s.optionalNullable(s.number()),
+  maxAttendees: s.optionalNullable(s.int()),
   atCapacity: s.boolean(),
   imageUpload: s.optionalNullable(s.record(s.string(), s.unknown())),
   _keysMap: {

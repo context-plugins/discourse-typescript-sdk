@@ -8,7 +8,7 @@ export type RequiredTagGroup = {
 
 export const requiredTagGroupSchema: Schema<RequiredTagGroup> = s.object<RequiredTagGroup>({
   name: s.string(),
-  minCount: s.number(),
+  minCount: s.int(),
   _keysMap: {
     minCount: "min_count",
   },

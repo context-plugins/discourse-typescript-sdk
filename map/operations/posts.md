@@ -4,16 +4,17 @@
 
 Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · Request types: namespace `Posts`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createTopicPostPm
 
-- **Signature**: `createTopicPostPm(request: Posts.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ResponseError>`
+- **Signature**: `createTopicPostPm(request: Posts.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ApiError>`
 - **Wire**: `POST /posts.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostsJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.CreateTopicPostPmRequest` (3):
 
@@ -30,12 +31,13 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### deletePost
 
-- **Signature**: `deletePost(request: Posts.DeletePostRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `deletePost(request: Posts.DeletePostRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `DELETE /posts/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.DeletePostRequest` (4):
 
@@ -52,12 +54,12 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### getPost
 
-- **Signature**: `getPost(request: Posts.GetPostRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse2, ResponseError>`
+- **Signature**: `getPost(request: Posts.GetPostRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse2, ApiError>`
 - **Wire**: `GET /posts/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PostsJsonResponse2`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.GetPostRequest` (1):
 
@@ -71,12 +73,12 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### listPosts
 
-- **Signature**: `listPosts(request: Posts.ListPostsRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse, ResponseError>`
+- **Signature**: `listPosts(request: Posts.ListPostsRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse, ApiError>`
 - **Wire**: `GET /posts.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PostsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.ListPostsRequest` (1):
 
@@ -90,12 +92,13 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### lockPost
 
-- **Signature**: `lockPost(request: Posts.LockPostRequest, options?: RequestOptions): ApiPromise<PostsLockedJsonResponse, ResponseError>`
+- **Signature**: `lockPost(request: Posts.LockPostRequest, options?: RequestOptions): ApiPromise<PostsLockedJsonResponse, ApiError>`
 - **Wire**: `PUT /posts/{id}/locked.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostsLockedJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.LockPostRequest` (4):
 
@@ -113,12 +116,13 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### performPostAction
 
-- **Signature**: `performPostAction(request: Posts.PerformPostActionRequest, options?: RequestOptions): ApiPromise<PostActionsJsonResponse, ResponseError>`
+- **Signature**: `performPostAction(request: Posts.PerformPostActionRequest, options?: RequestOptions): ApiPromise<PostActionsJsonResponse, ApiError>`
 - **Wire**: `POST /post_actions.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostActionsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.PerformPostActionRequest` (3):
 
@@ -135,12 +139,12 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### postReplies
 
-- **Signature**: `postReplies(request: Posts.PostRepliesRequest, options?: RequestOptions): ApiPromise<PostsRepliesJsonResponse[], ResponseError>`
+- **Signature**: `postReplies(request: Posts.PostRepliesRequest, options?: RequestOptions): ApiPromise<PostsRepliesJsonResponse[], ApiError>`
 - **Wire**: `GET /posts/{id}/replies.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `PostsRepliesJsonResponse[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.PostRepliesRequest` (1):
 
@@ -154,12 +158,13 @@ Accessor: `client.posts` · Source: `src/resources/posts.ts` · 8 operations · 
 
 ### updatePost
 
-- **Signature**: `updatePost(request: Posts.UpdatePostRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse3, ResponseError>`
+- **Signature**: `updatePost(request: Posts.UpdatePostRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse3, ApiError>`
 - **Wire**: `PUT /posts/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostsJsonResponse3`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Posts.UpdatePostRequest` (4):
 

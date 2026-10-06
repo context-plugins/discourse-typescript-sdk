@@ -12,8 +12,8 @@ export type NotificationsJsonResponse = {
 export const notificationsJsonResponseSchema: Schema<NotificationsJsonResponse> =
   s.object<NotificationsJsonResponse>({
     notifications: s.optional(s.array(s.lazy(() => notificationSchema))),
-    totalRowsNotifications: s.optional(s.number()),
-    seenNotificationId: s.optional(s.number()),
+    totalRowsNotifications: s.optional(s.int()),
+    seenNotificationId: s.optional(s.int()),
     loadMoreNotifications: s.optional(s.string()),
     _keysMap: {
       totalRowsNotifications: "total_rows_notifications",

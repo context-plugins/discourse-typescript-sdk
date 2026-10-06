@@ -33,7 +33,7 @@ export type Details = {
 
 export const detailsSchema: Schema<Details> = s.object<Details>({
   canEdit: s.boolean(),
-  notificationLevel: s.number(),
+  notificationLevel: s.int(),
   canMovePosts: s.boolean(),
   canDelete: s.boolean(),
   canRemoveAllowedUsers: s.boolean(),
@@ -52,7 +52,7 @@ export const detailsSchema: Schema<Details> = s.object<Details>({
   canPinUnpinTopic: s.boolean(),
   canBannerTopic: s.optional(s.boolean()),
   canModerateCategory: s.boolean(),
-  canRemoveSelfId: s.number(),
+  canRemoveSelfId: s.int(),
   participants: s.optional(s.array(s.lazy(() => participant1Schema))),
   createdBy: createdBySchema,
   lastPoster: lastPosterSchema,

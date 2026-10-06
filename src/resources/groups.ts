@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   adminGroupsJsonRequestSchema,
@@ -51,16 +52,29 @@ export class Groups {
     this.#servers = servers;
   }
 
+  /**
+   * Add group members
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   addGroupMembers(
     request: Groups.AddGroupMembersRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsMembersJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<GroupsMembersJsonResponse1, ResponseError>(
+  ): ApiPromise<GroupsMembersJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/groups/{id}/members.json"),
+        urlTemplate: this.#servers.default("/groups/{id}/members.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -69,21 +83,35 @@ export class Groups {
       },
       {
         success: { kind: "json", schema: groupsMembersJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Create a group
+   *
+   * @returns group created
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createGroup(
     request: Groups.CreateGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminGroupsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminGroupsJsonResponse, ResponseError>(
+  ): ApiPromise<AdminGroupsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin/groups.json"),
+        urlTemplate: this.#servers.default("/admin/groups.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -92,118 +120,197 @@ export class Groups {
       },
       {
         success: { kind: "json", schema: adminGroupsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Delete a group
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteGroup(
     request: Groups.DeleteGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminGroupsJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<AdminGroupsJsonResponse1, ResponseError>(
+  ): ApiPromise<AdminGroupsJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/admin/groups/{id}.json"),
+        urlTemplate: this.#servers.default("/admin/groups/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminGroupsJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get a group
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getGroup(
     request: Groups.GetGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<GroupsJsonResponse, ResponseError>(
+  ): ApiPromise<GroupsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/groups/{name}.json"),
+        urlTemplate: this.#servers.default("/groups/{name}.json"),
         auth: noneAuth,
         pathParams: [{ name: "name", value: request.name, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: groupsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get a group by id
+   *
+   * @returns success response (by id)
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getGroupById(
     request: Groups.GetGroupByIdRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsByIdJsonResponse, ResponseError> {
-    return this.#rawClient.execute<GroupsByIdJsonResponse, ResponseError>(
+  ): ApiPromise<GroupsByIdJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/groups/by-id/{id}.json"),
+        urlTemplate: this.#servers.default("/groups/by-id/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: groupsByIdJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List group members
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   listGroupMembers(
     request: Groups.ListGroupMembersRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsMembersJsonResponse, ResponseError> {
-    return this.#rawClient.execute<GroupsMembersJsonResponse, ResponseError>(
+  ): ApiPromise<GroupsMembersJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/groups/{name}/members.json"),
+        urlTemplate: this.#servers.default("/groups/{name}/members.json"),
         auth: noneAuth,
         pathParams: [{ name: "name", value: request.name, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: groupsMembersJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  listGroups(options?: RequestOptions): ApiPromise<GroupsJsonResponse2, ResponseError> {
-    return this.#rawClient.execute<GroupsJsonResponse2, ResponseError>(
+  /**
+   * List groups
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  listGroups(options?: RequestOptions): ApiPromise<GroupsJsonResponse2, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/groups.json"),
+        urlTemplate: this.#servers.default("/groups.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: groupsJsonResponse2Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Remove group members
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   removeGroupMembers(
     request: Groups.RemoveGroupMembersRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsMembersJsonResponse2, ResponseError> {
-    return this.#rawClient.execute<GroupsMembersJsonResponse2, ResponseError>(
+  ): ApiPromise<GroupsMembersJsonResponse2, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/groups/{id}/members.json"),
+        urlTemplate: this.#servers.default("/groups/{id}/members.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -212,22 +319,35 @@ export class Groups {
       },
       {
         success: { kind: "json", schema: groupsMembersJsonResponse2Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update a group
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updateGroup(
     request: Groups.UpdateGroupRequest,
     options?: RequestOptions,
-  ): ApiPromise<GroupsJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<GroupsJsonResponse1, ResponseError>(
+  ): ApiPromise<GroupsJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/groups/{id}.json"),
+        urlTemplate: this.#servers.default("/groups/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -236,7 +356,7 @@ export class Groups {
       },
       {
         success: { kind: "json", schema: groupsJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -258,14 +378,17 @@ export namespace Groups {
   };
 
   export type GetGroupRequest = {
+    /** Use group name instead of id */
     name: string;
   };
 
   export type GetGroupByIdRequest = {
+    /** Use group name instead of id */
     id: string;
   };
 
   export type ListGroupMembersRequest = {
+    /** Use group name instead of id */
     name: string;
   };
 

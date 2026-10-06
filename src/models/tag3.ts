@@ -11,11 +11,11 @@ export type Tag3 = {
 };
 
 export const tag3Schema: Schema<Tag3> = s.object<Tag3>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   text: s.optional(s.string()),
   name: s.optional(s.string()),
-  count: s.optional(s.number()),
-  pmCount: s.optional(s.number()),
+  count: s.optional(s.int()),
+  pmCount: s.optional(s.int()),
   targetTag: s.optionalNullable(s.string()),
   _keysMap: {
     pmCount: "pm_count",

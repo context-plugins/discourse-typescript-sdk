@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   adminUsersActivateJsonResponseSchema,
@@ -74,153 +75,243 @@ export class Admin {
     this.#servers = servers;
   }
 
+  /**
+   * Activate a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   activateUser(
     request: Admin.ActivateUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersActivateJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersActivateJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersActivateJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/users/{id}/activate.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/activate.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminUsersActivateJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get a user by id
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminGetUser(
     request: Admin.AdminGetUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/users/{id}.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminUsersJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List users
+   *
+   * @returns users response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminListUsers(
     request: Admin.AdminListUsersRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersJsonResponse2[], ResponseError> {
-    return this.#rawClient.execute<AdminUsersJsonResponse2[], ResponseError>(
+  ): ApiPromise<AdminUsersJsonResponse2[], ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/users.json"),
+        urlTemplate: this.#servers.default("/admin/users.json"),
         auth: noneAuth,
+        pathParams: [],
         query: [
           { name: "order", value: request.order, schema: s.optional(s.lazy(() => order3Schema)) },
           { name: "asc", value: request.asc, schema: s.optional(s.lazy(() => ascSchema)) },
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.int()) },
           { name: "show_emails", value: request.showEmails, schema: s.optional(s.boolean()) },
           { name: "stats", value: request.stats, schema: s.optional(s.boolean()) },
           { name: "email", value: request.email, schema: s.optional(s.string()) },
           { name: "ip", value: request.ip, schema: s.optional(s.string()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: s.array(s.lazy(() => adminUsersJsonResponse2Schema)) },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List users by flag
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   adminListUsersFlag(
     request: Admin.AdminListUsersFlagRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersListJsonResponse[], ResponseError> {
-    return this.#rawClient.execute<AdminUsersListJsonResponse[], ResponseError>(
+  ): ApiPromise<AdminUsersListJsonResponse[], ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/admin/users/list/{flag}.json"),
+        urlTemplate: this.#servers.default("/admin/users/list/{flag}.json"),
         auth: noneAuth,
         pathParams: [{ name: "flag", value: request.flag, schema: flagSchema }],
         query: [
           { name: "order", value: request.order, schema: s.optional(s.lazy(() => order3Schema)) },
           { name: "asc", value: request.asc, schema: s.optional(s.lazy(() => ascSchema)) },
-          { name: "page", value: request.page, schema: s.optional(s.number()) },
+          { name: "page", value: request.page, schema: s.optional(s.int()) },
           { name: "show_emails", value: request.showEmails, schema: s.optional(s.boolean()) },
           { name: "stats", value: request.stats, schema: s.optional(s.boolean()) },
           { name: "email", value: request.email, schema: s.optional(s.string()) },
           { name: "ip", value: request.ip, schema: s.optional(s.string()) },
         ],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: s.array(s.lazy(() => adminUsersListJsonResponseSchema)) },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Anonymize a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   anonymizeUser(
     request: Admin.AnonymizeUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersAnonymizeJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersAnonymizeJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersAnonymizeJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/users/{id}/anonymize.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/anonymize.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminUsersAnonymizeJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Deactivate a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deactivateUser(
     request: Admin.DeactivateUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersDeactivateJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersDeactivateJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersDeactivateJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/users/{id}/deactivate.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/deactivate.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminUsersDeactivateJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Delete a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   deleteUser(
     request: Admin.DeleteUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<AdminUsersJsonResponse1, ResponseError>(
+  ): ApiPromise<AdminUsersJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/admin/users/{id}.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -229,62 +320,101 @@ export class Admin {
       },
       {
         success: { kind: "json", schema: adminUsersJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Log a user out
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   logOutUser(
     request: Admin.LogOutUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersLogOutJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersLogOutJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersLogOutJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/admin/users/{id}/log_out.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/log_out.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: adminUsersLogOutJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Refresh gravatar
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   refreshGravatar(
     request: Admin.RefreshGravatarRequest,
     options?: RequestOptions,
-  ): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ResponseError> {
-    return this.#rawClient.execute<UserAvatarRefreshGravatarJsonResponse, ResponseError>(
+  ): ApiPromise<UserAvatarRefreshGravatarJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/user_avatar/{username}/refresh_gravatar.json"),
+        urlTemplate: this.#servers.default("/user_avatar/{username}/refresh_gravatar.json"),
         auth: noneAuth,
         pathParams: [{ name: "username", value: request.username, schema: s.string() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: userAvatarRefreshGravatarJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Silence a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   silenceUser(
     request: Admin.SilenceUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersSilenceJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersSilenceJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersSilenceJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/users/{id}/silence.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/silence.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -293,22 +423,35 @@ export class Admin {
       },
       {
         success: { kind: "json", schema: adminUsersSilenceJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Suspend a user
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   suspendUser(
     request: Admin.SuspendUserRequest,
     options?: RequestOptions,
-  ): ApiPromise<AdminUsersSuspendJsonResponse, ResponseError> {
-    return this.#rawClient.execute<AdminUsersSuspendJsonResponse, ResponseError>(
+  ): ApiPromise<AdminUsersSuspendJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/admin/users/{id}/suspend.json"),
+        urlTemplate: this.#servers.default("/admin/users/{id}/suspend.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -317,7 +460,7 @@ export class Admin {
       },
       {
         success: { kind: "json", schema: adminUsersSuspendJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -337,9 +480,16 @@ export namespace Admin {
     order?: Order3;
     asc?: Asc;
     page?: number;
+    /**
+     * Include user email addresses in response. These requests will be logged in the staff action
+     * logs.
+     */
     showEmails?: boolean;
+    /** Include user stats information */
     stats?: boolean;
+    /** Filter to the user with this email address */
     email?: string;
+    /** Filter to users with this IP address */
     ip?: string;
   };
 
@@ -348,9 +498,16 @@ export namespace Admin {
     order?: Order3;
     asc?: Asc;
     page?: number;
+    /**
+     * Include user email addresses in response. These requests will be logged in the staff action
+     * logs.
+     */
     showEmails?: boolean;
+    /** Include user stats information */
     stats?: boolean;
+    /** Filter to the user with this email address */
     email?: string;
+    /** Filter to users with this IP address */
     ip?: string;
   };
 

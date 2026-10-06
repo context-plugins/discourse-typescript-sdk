@@ -14,7 +14,7 @@ export type Member = {
 };
 
 export const memberSchema: Schema<Member> = s.object<Member>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.nullable(s.string()),
   avatarTemplate: s.string(),

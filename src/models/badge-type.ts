@@ -8,9 +8,9 @@ export type BadgeType = {
 };
 
 export const badgeTypeSchema: Schema<BadgeType> = s.object<BadgeType>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
-  sortOrder: s.number(),
+  sortOrder: s.int(),
   _keysMap: {
     sortOrder: "sort_order",
   },

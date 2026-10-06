@@ -14,7 +14,7 @@ export type Owner = {
 };
 
 export const ownerSchema: Schema<Owner> = s.object<Owner>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.nullable(s.string()),
   avatarTemplate: s.string(),

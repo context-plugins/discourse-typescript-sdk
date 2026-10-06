@@ -9,10 +9,10 @@ export type PostTypes = {
 };
 
 export const postTypesSchema: Schema<PostTypes> = s.object<PostTypes>({
-  regular: s.number(),
-  moderatorAction: s.number(),
-  smallAction: s.number(),
-  whisper: s.number(),
+  regular: s.int(),
+  moderatorAction: s.int(),
+  smallAction: s.int(),
+  whisper: s.int(),
   _keysMap: {
     moderatorAction: "moderator_action",
     smallAction: "small_action",

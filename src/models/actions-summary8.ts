@@ -9,8 +9,8 @@ export type ActionsSummary8 = {
 };
 
 export const actionsSummary8Schema: Schema<ActionsSummary8> = s.object<ActionsSummary8>({
-  id: s.number(),
-  count: s.number(),
+  id: s.int(),
+  count: s.int(),
   hidden: s.boolean(),
   canAct: s.boolean(),
   _keysMap: {

@@ -10,10 +10,10 @@ export type UserColorScheme = {
 };
 
 export const userColorSchemeSchema: Schema<UserColorScheme> = s.object<UserColorScheme>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   isDark: s.boolean(),
-  themeId: s.optionalNullable(s.number()),
+  themeId: s.optionalNullable(s.int()),
   colors: s.array(s.record(s.string(), s.unknown())),
   _keysMap: {
     isDark: "is_dark",

@@ -9,7 +9,7 @@ export type UPreferencesAvatarPickJsonRequest = {
 
 export const uPreferencesAvatarPickJsonRequestSchema: Schema<UPreferencesAvatarPickJsonRequest> =
   s.object<UPreferencesAvatarPickJsonRequest>({
-    uploadId: s.number(),
+    uploadId: s.int(),
     type: type1Schema,
     _keysMap: {
       uploadId: "upload_id",

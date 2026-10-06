@@ -9,7 +9,7 @@ export type ApprovedBy = {
 };
 
 export const approvedBySchema: Schema<ApprovedBy> = s.object<ApprovedBy>({
-  id: s.number(),
+  id: s.int(),
   username: s.string(),
   name: s.string(),
   avatarTemplate: s.string(),

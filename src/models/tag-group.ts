@@ -13,12 +13,12 @@ export type TagGroup = {
 };
 
 export const tagGroupSchema: Schema<TagGroup> = s.object<TagGroup>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   tags: s.array(s.lazy(() => tagSchema)),
   parentTag: s.array(s.lazy(() => parentTagSchema)),
   onePerTopic: s.boolean(),
-  permissions: s.record(s.string(), s.number()),
+  permissions: s.record(s.string(), s.int()),
   _keysMap: {
     parentTag: "parent_tag",
     onePerTopic: "one_per_topic",

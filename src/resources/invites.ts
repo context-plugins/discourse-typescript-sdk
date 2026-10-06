@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   invitesCreateMultipleJsonRequestSchema,
@@ -35,18 +36,32 @@ export class Invites {
     this.#servers = servers;
   }
 
+  /**
+   * Create an invite
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createInvite(
     request: Invites.CreateInviteRequest,
     options?: RequestOptions,
-  ): ApiPromise<InvitesJsonResponse, ResponseError> {
-    return this.#rawClient.execute<InvitesJsonResponse, ResponseError>(
+  ): ApiPromise<InvitesJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/invites.json"),
+        urlTemplate: this.#servers.default("/invites.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -56,24 +71,38 @@ export class Invites {
       },
       {
         success: { kind: "json", schema: invitesJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Create multiple invites
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createMultipleInvites(
     request: Invites.CreateMultipleInvitesRequest,
     options?: RequestOptions,
-  ): ApiPromise<InvitesCreateMultipleJsonResponse, ResponseError> {
-    return this.#rawClient.execute<InvitesCreateMultipleJsonResponse, ResponseError>(
+  ): ApiPromise<InvitesCreateMultipleJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/invites/create-multiple.json"),
+        urlTemplate: this.#servers.default("/invites/create-multiple.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -83,25 +112,38 @@ export class Invites {
       },
       {
         success: { kind: "json", schema: invitesCreateMultipleJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Invite group to topic
+   *
+   * @returns invites to a PM
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   inviteGroupToTopic(
     request: Invites.InviteGroupToTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TInviteGroupJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TInviteGroupJsonResponse, ResponseError>(
+  ): ApiPromise<TInviteGroupJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/invite-group.json"),
+        urlTemplate: this.#servers.default("/t/{id}/invite-group.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -111,25 +153,38 @@ export class Invites {
       },
       {
         success: { kind: "json", schema: tInviteGroupJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Invite to topic
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   inviteToTopic(
     request: Invites.InviteToTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TInviteJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TInviteJsonResponse, ResponseError>(
+  ): ApiPromise<TInviteJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/invite.json"),
+        urlTemplate: this.#servers.default("/t/{id}/invite.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -139,7 +194,7 @@ export class Invites {
       },
       {
         success: { kind: "json", schema: tInviteJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

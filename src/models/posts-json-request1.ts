@@ -4,6 +4,7 @@ import { post1Schema, type Post1 } from "./post1.js";
 
 export type PostsJsonRequest1 = {
   post?: Post1;
+  /** Skip bumping the topic when updating the post. Requires staff or TL4 permissions. */
   bypassBump?: boolean;
 };
 

@@ -1,8 +1,8 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
 import {
   siteBasicInfoJsonResponseSchema,
   type SiteBasicInfoJsonResponse,
@@ -19,33 +19,67 @@ export class Site {
     this.#servers = servers;
   }
 
-  getSite(options?: RequestOptions): ApiPromise<SiteJsonResponse, ResponseError> {
-    return this.#rawClient.execute<SiteJsonResponse, ResponseError>(
+  /**
+   * Get site info
+   *
+   * @remarks
+   * Can be used to fetch all categories and subcategories
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getSite(options?: RequestOptions): ApiPromise<SiteJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/site.json"),
+        urlTemplate: this.#servers.default("/site.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: siteJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getSiteBasicInfo(options?: RequestOptions): ApiPromise<SiteBasicInfoJsonResponse, ResponseError> {
-    return this.#rawClient.execute<SiteBasicInfoJsonResponse, ResponseError>(
+  /**
+   * Get site basic info
+   *
+   * @remarks
+   * Can be used to fetch basic info about a site
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getSiteBasicInfo(options?: RequestOptions): ApiPromise<SiteBasicInfoJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/site/basic-info.json"),
+        urlTemplate: this.#servers.default("/site/basic-info.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: siteBasicInfoJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

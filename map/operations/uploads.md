@@ -4,16 +4,17 @@
 
 Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations · Request types: namespace `Uploads`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### abortMultipart
 
-- **Signature**: `abortMultipart(request: Uploads.AbortMultipartRequest, options?: RequestOptions): ApiPromise<UploadsAbortMultipartJsonResponse, ResponseError>`
+- **Signature**: `abortMultipart(request: Uploads.AbortMultipartRequest, options?: RequestOptions): ApiPromise<UploadsAbortMultipartJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/abort-multipart.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsAbortMultipartJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.AbortMultipartRequest` (1):
 
@@ -28,12 +29,13 @@ Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations
 
 ### batchPresignMultipartParts
 
-- **Signature**: `batchPresignMultipartParts(request: Uploads.BatchPresignMultipartPartsRequest, options?: RequestOptions): ApiPromise<UploadsBatchPresignMultipartPartsJsonResponse, ResponseError>`
+- **Signature**: `batchPresignMultipartParts(request: Uploads.BatchPresignMultipartPartsRequest, options?: RequestOptions): ApiPromise<UploadsBatchPresignMultipartPartsJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/batch-presign-multipart-parts.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsBatchPresignMultipartPartsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.BatchPresignMultipartPartsRequest` (1):
 
@@ -48,12 +50,13 @@ Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations
 
 ### completeExternalUpload
 
-- **Signature**: `completeExternalUpload(request: Uploads.CompleteExternalUploadRequest, options?: RequestOptions): ApiPromise<UploadsCompleteExternalUploadJsonResponse, ResponseError>`
+- **Signature**: `completeExternalUpload(request: Uploads.CompleteExternalUploadRequest, options?: RequestOptions): ApiPromise<UploadsCompleteExternalUploadJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/complete-external-upload.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsCompleteExternalUploadJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.CompleteExternalUploadRequest` (1):
 
@@ -68,12 +71,13 @@ Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations
 
 ### completeMultipart
 
-- **Signature**: `completeMultipart(request: Uploads.CompleteMultipartRequest, options?: RequestOptions): ApiPromise<UploadsCompleteMultipartJsonResponse, ResponseError>`
+- **Signature**: `completeMultipart(request: Uploads.CompleteMultipartRequest, options?: RequestOptions): ApiPromise<UploadsCompleteMultipartJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/complete-multipart.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsCompleteMultipartJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.CompleteMultipartRequest` (1):
 
@@ -88,12 +92,13 @@ Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations
 
 ### createMultipartUpload
 
-- **Signature**: `createMultipartUpload(request: Uploads.CreateMultipartUploadRequest, options?: RequestOptions): ApiPromise<UploadsCreateMultipartJsonResponse, ResponseError>`
+- **Signature**: `createMultipartUpload(request: Uploads.CreateMultipartUploadRequest, options?: RequestOptions): ApiPromise<UploadsCreateMultipartJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/create-multipart.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsCreateMultipartJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.CreateMultipartUploadRequest` (1):
 
@@ -108,25 +113,37 @@ Accessor: `client.uploads` · Source: `src/resources/uploads.ts` · 7 operations
 
 ### createUpload
 
-- **Signature**: `createUpload(options?: RequestOptions): ApiPromise<UploadsJsonResponse, ResponseError>`
+- **Signature**: `createUpload(request: Uploads.CreateUploadRequest, options?: RequestOptions): ApiPromise<UploadsJsonResponse, ApiError>`
 - **Wire**: `POST /uploads.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: none — no `Content-Type` header is sent
+- **Request body**: `multipart/form-data` — every field marked `form`. `file` is a file part, framed as bytes rather than encoded. The platform writes the boundary, or the SDK does when a file part streams
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
+
+**Fields** — `Uploads.CreateUploadRequest` (4):
+
+| Field | Channel | Wire | Type | Req |
+| --- | --- | --- | --- | --- |
+| `uploadType` | `form` | `upload_type` | `UploadType` | yes |
+| `userId` | `form` | `user_id` | `number` | no |
+| `synchronous` | `form` | — | `boolean` | no |
+| `file` | `form` | — | `FileInput` | no |
 
 | Type | Schema value | Source |
 | --- | --- | --- |
+| `UploadType` | `uploadTypeSchema` | `src/models/upload-type.ts` |
 | `UploadsJsonResponse` | `uploadsJsonResponseSchema` | `src/models/uploads-json-response.ts` |
 
 ### generatePresignedPut
 
-- **Signature**: `generatePresignedPut(request: Uploads.GeneratePresignedPutRequest, options?: RequestOptions): ApiPromise<UploadsGeneratePresignedPutJsonResponse, ResponseError>`
+- **Signature**: `generatePresignedPut(request: Uploads.GeneratePresignedPutRequest, options?: RequestOptions): ApiPromise<UploadsGeneratePresignedPutJsonResponse, ApiError>`
 - **Wire**: `POST /uploads/generate-presigned-put.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `UploadsGeneratePresignedPutJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Uploads.GeneratePresignedPutRequest` (1):
 

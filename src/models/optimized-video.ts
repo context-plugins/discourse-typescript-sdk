@@ -12,11 +12,11 @@ export type OptimizedVideo = {
 };
 
 export const optimizedVideoSchema: Schema<OptimizedVideo> = s.object<OptimizedVideo>({
-  id: s.optional(s.number()),
-  uploadId: s.optional(s.number()),
+  id: s.optional(s.int()),
+  uploadId: s.optional(s.int()),
   url: s.optional(s.string()),
   extension: s.optional(s.string()),
-  filesize: s.optional(s.number()),
+  filesize: s.optional(s.int()),
   sha1: s.optional(s.string()),
   originalFilename: s.optional(s.string()),
   _keysMap: {

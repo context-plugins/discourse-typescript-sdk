@@ -12,13 +12,13 @@ export type UserBadge = {
 };
 
 export const userBadgeSchema: Schema<UserBadge> = s.object<UserBadge>({
-  id: s.number(),
+  id: s.int(),
   grantedAt: s.string(),
-  groupingPosition: s.number(),
+  groupingPosition: s.int(),
   isFavorite: s.nullable(s.string()),
   canFavorite: s.boolean(),
-  badgeId: s.number(),
-  grantedById: s.number(),
+  badgeId: s.int(),
+  grantedById: s.int(),
   _keysMap: {
     grantedAt: "granted_at",
     groupingPosition: "grouping_position",

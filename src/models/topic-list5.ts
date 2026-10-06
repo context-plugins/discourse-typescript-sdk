@@ -16,9 +16,9 @@ export const topicList5Schema: Schema<TopicList5> = s.object<TopicList5>({
   canCreateTopic: s.optional(s.boolean()),
   draft: s.optionalNullable(s.string()),
   draftKey: s.optional(s.string()),
-  draftSequence: s.optional(s.number()),
+  draftSequence: s.optional(s.int()),
   forPeriod: s.optional(s.string()),
-  perPage: s.optional(s.number()),
+  perPage: s.optional(s.int()),
   topics: s.optional(s.array(s.lazy(() => topic7Schema))),
   _keysMap: {
     canCreateTopic: "can_create_topic",

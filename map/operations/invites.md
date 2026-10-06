@@ -4,16 +4,17 @@
 
 Accessor: `client.invites` · Source: `src/resources/invites.ts` · 4 operations · Request types: namespace `Invites`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createInvite
 
-- **Signature**: `createInvite(request: Invites.CreateInviteRequest, options?: RequestOptions): ApiPromise<InvitesJsonResponse, ResponseError>`
+- **Signature**: `createInvite(request: Invites.CreateInviteRequest, options?: RequestOptions): ApiPromise<InvitesJsonResponse, ApiError>`
 - **Wire**: `POST /invites.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `InvitesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Invites.CreateInviteRequest` (3):
 
@@ -30,12 +31,13 @@ Accessor: `client.invites` · Source: `src/resources/invites.ts` · 4 operations
 
 ### createMultipleInvites
 
-- **Signature**: `createMultipleInvites(request: Invites.CreateMultipleInvitesRequest, options?: RequestOptions): ApiPromise<InvitesCreateMultipleJsonResponse, ResponseError>`
+- **Signature**: `createMultipleInvites(request: Invites.CreateMultipleInvitesRequest, options?: RequestOptions): ApiPromise<InvitesCreateMultipleJsonResponse, ApiError>`
 - **Wire**: `POST /invites/create-multiple.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `InvitesCreateMultipleJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Invites.CreateMultipleInvitesRequest` (3):
 
@@ -52,12 +54,13 @@ Accessor: `client.invites` · Source: `src/resources/invites.ts` · 4 operations
 
 ### inviteGroupToTopic
 
-- **Signature**: `inviteGroupToTopic(request: Invites.InviteGroupToTopicRequest, options?: RequestOptions): ApiPromise<TInviteGroupJsonResponse, ResponseError>`
+- **Signature**: `inviteGroupToTopic(request: Invites.InviteGroupToTopicRequest, options?: RequestOptions): ApiPromise<TInviteGroupJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/invite-group.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TInviteGroupJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Invites.InviteGroupToTopicRequest` (4):
 
@@ -75,12 +78,13 @@ Accessor: `client.invites` · Source: `src/resources/invites.ts` · 4 operations
 
 ### inviteToTopic
 
-- **Signature**: `inviteToTopic(request: Invites.InviteToTopicRequest, options?: RequestOptions): ApiPromise<TInviteJsonResponse, ResponseError>`
+- **Signature**: `inviteToTopic(request: Invites.InviteToTopicRequest, options?: RequestOptions): ApiPromise<TInviteJsonResponse, ApiError>`
 - **Wire**: `POST /t/{id}/invite.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TInviteJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Invites.InviteToTopicRequest` (4):
 

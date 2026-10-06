@@ -12,7 +12,7 @@ export const tTimerJsonRequestSchema: Schema<TTimerJsonRequest> = s.object<TTime
   time: s.optional(s.string()),
   statusType: s.optional(s.string()),
   basedOnLastPost: s.optional(s.boolean()),
-  categoryId: s.optional(s.number()),
+  categoryId: s.optional(s.int()),
   _keysMap: {
     statusType: "status_type",
     basedOnLastPost: "based_on_last_post",

@@ -4,16 +4,17 @@
 
 Accessor: `client.privateMessages` · Source: `src/resources/private-messages.ts` · 3 operations · Request types: namespace `PrivateMessages`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createTopicPostPm
 
-- **Signature**: `createTopicPostPm(request: PrivateMessages.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ResponseError>`
+- **Signature**: `createTopicPostPm(request: PrivateMessages.CreateTopicPostPmRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse1, ApiError>`
 - **Wire**: `POST /posts.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `PostsJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PrivateMessages.CreateTopicPostPmRequest` (3):
 
@@ -30,12 +31,12 @@ Accessor: `client.privateMessages` · Source: `src/resources/private-messages.ts
 
 ### getUserSentPrivateMessages
 
-- **Signature**: `getUserSentPrivateMessages(request: PrivateMessages.GetUserSentPrivateMessagesRequest, options?: RequestOptions): ApiPromise<TopicsPrivateMessagesSentJsonResponse, ResponseError>`
+- **Signature**: `getUserSentPrivateMessages(request: PrivateMessages.GetUserSentPrivateMessagesRequest, options?: RequestOptions): ApiPromise<TopicsPrivateMessagesSentJsonResponse, ApiError>`
 - **Wire**: `GET /topics/private-messages-sent/{username}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TopicsPrivateMessagesSentJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PrivateMessages.GetUserSentPrivateMessagesRequest` (1):
 
@@ -49,12 +50,12 @@ Accessor: `client.privateMessages` · Source: `src/resources/private-messages.ts
 
 ### listUserPrivateMessages
 
-- **Signature**: `listUserPrivateMessages(request: PrivateMessages.ListUserPrivateMessagesRequest, options?: RequestOptions): ApiPromise<TopicsPrivateMessagesJsonResponse, ResponseError>`
+- **Signature**: `listUserPrivateMessages(request: PrivateMessages.ListUserPrivateMessagesRequest, options?: RequestOptions): ApiPromise<TopicsPrivateMessagesJsonResponse, ApiError>`
 - **Wire**: `GET /topics/private-messages/{username}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TopicsPrivateMessagesJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `PrivateMessages.ListUserPrivateMessagesRequest` (1):
 

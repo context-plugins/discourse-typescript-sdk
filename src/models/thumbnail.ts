@@ -12,13 +12,13 @@ export type Thumbnail = {
 };
 
 export const thumbnailSchema: Schema<Thumbnail> = s.object<Thumbnail>({
-  id: s.optional(s.number()),
-  uploadId: s.optional(s.number()),
+  id: s.optional(s.int()),
+  uploadId: s.optional(s.int()),
   url: s.optional(s.string()),
   extension: s.optional(s.string()),
-  width: s.optional(s.number()),
-  height: s.optional(s.number()),
-  filesize: s.optional(s.number()),
+  width: s.optional(s.int()),
+  height: s.optional(s.int()),
+  filesize: s.optional(s.int()),
   _keysMap: {
     uploadId: "upload_id",
   },

@@ -22,7 +22,7 @@ export type InvitesJsonResponse = {
 };
 
 export const invitesJsonResponseSchema: Schema<InvitesJsonResponse> = s.object<InvitesJsonResponse>({
-  id: s.number(),
+  id: s.int(),
   inviteKey: s.string(),
   link: s.string(),
   description: s.nullable(s.string()),

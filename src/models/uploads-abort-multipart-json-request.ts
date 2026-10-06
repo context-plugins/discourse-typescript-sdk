@@ -2,6 +2,10 @@ import * as s from "../core/validation/index.js";
 import type { Schema } from "../core/validation/schema.js";
 
 export type UploadsAbortMultipartJsonRequest = {
+  /**
+   * The identifier of the multipart upload in the external storage provider. This is the multipart
+   * upload_id in AWS S3.
+   */
   externalUploadIdentifier: string;
 };
 

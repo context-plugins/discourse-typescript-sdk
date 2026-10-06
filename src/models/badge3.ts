@@ -20,21 +20,21 @@ export type Badge3 = {
 };
 
 export const badge3Schema: Schema<Badge3> = s.object<Badge3>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   description: s.string(),
-  grantCount: s.number(),
+  grantCount: s.int(),
   allowTitle: s.boolean(),
   multipleGrant: s.boolean(),
   icon: s.string(),
   imageUrl: s.nullable(s.string()),
   listable: s.boolean(),
   enabled: s.boolean(),
-  badgeGroupingId: s.number(),
+  badgeGroupingId: s.int(),
   system: s.boolean(),
   slug: s.string(),
   manuallyGrantable: s.boolean(),
-  badgeTypeId: s.number(),
+  badgeTypeId: s.int(),
   _keysMap: {
     grantCount: "grant_count",
     allowTitle: "allow_title",

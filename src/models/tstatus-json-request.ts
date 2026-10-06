@@ -6,6 +6,7 @@ import { status1Schema, type Status1 } from "./status1.js";
 export type TStatusJsonRequest = {
   status: Status1;
   enabled: Enabled;
+  /** Only required for `pinned` and `pinned_globally` */
   until?: string;
 };
 

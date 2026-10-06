@@ -15,14 +15,14 @@ export type DirectoryItem = {
 };
 
 export const directoryItemSchema: Schema<DirectoryItem> = s.object<DirectoryItem>({
-  id: s.number(),
-  likesReceived: s.number(),
-  likesGiven: s.number(),
-  topicsEntered: s.number(),
-  topicCount: s.number(),
-  postCount: s.number(),
-  postsRead: s.number(),
-  daysVisited: s.number(),
+  id: s.int(),
+  likesReceived: s.int(),
+  likesGiven: s.int(),
+  topicsEntered: s.int(),
+  topicCount: s.int(),
+  postCount: s.int(),
+  postsRead: s.int(),
+  daysVisited: s.int(),
   user: user11Schema,
   _keysMap: {
     likesReceived: "likes_received",

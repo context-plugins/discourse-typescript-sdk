@@ -10,7 +10,7 @@ export type Reminder = {
 };
 
 export const reminderSchema: Schema<Reminder> = s.object<Reminder>({
-  value: s.number(),
+  value: s.int(),
   unit: s.string(),
   period: periodSchema,
   type: s.string(),

@@ -36,13 +36,13 @@ export type SuggestedTopic = {
 };
 
 export const suggestedTopicSchema: Schema<SuggestedTopic> = s.object<SuggestedTopic>({
-  id: s.number(),
+  id: s.int(),
   title: s.string(),
   fancyTitle: s.string(),
   slug: s.string(),
-  postsCount: s.number(),
-  replyCount: s.number(),
-  highestPostNumber: s.number(),
+  postsCount: s.int(),
+  replyCount: s.int(),
+  highestPostNumber: s.int(),
   imageUrl: s.nullable(s.string()),
   createdAt: s.string(),
   lastPostedAt: s.nullable(s.string()),
@@ -60,9 +60,9 @@ export const suggestedTopicSchema: Schema<SuggestedTopic> = s.object<SuggestedTo
   liked: s.nullable(s.string()),
   tags: s.array(s.lazy(() => tagSchema)),
   tagsDescriptions: s.record(s.string(), s.unknown()),
-  likeCount: s.number(),
-  views: s.number(),
-  categoryId: s.number(),
+  likeCount: s.int(),
+  views: s.int(),
+  categoryId: s.int(),
   featuredLink: s.nullable(s.string()),
   posters: s.array(s.lazy(() => poster4Schema)),
   _keysMap: {

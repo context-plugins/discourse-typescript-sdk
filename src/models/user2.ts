@@ -9,7 +9,7 @@ export type User2 = {
 };
 
 export const user2Schema: Schema<User2> = s.object<User2>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   username: s.optional(s.string()),
   name: s.optionalNullable(s.string()),
   avatarTemplate: s.optional(s.string()),

@@ -10,11 +10,11 @@ export type Triggers = {
 };
 
 export const triggersSchema: Schema<Triggers> = s.object<Triggers>({
-  userChange: s.number(),
-  none: s.number(),
-  postRevision: s.number(),
-  trustLevelChange: s.number(),
-  postAction: s.number(),
+  userChange: s.int(),
+  none: s.int(),
+  postRevision: s.int(),
+  trustLevelChange: s.int(),
+  postAction: s.int(),
   _keysMap: {
     userChange: "user_change",
     postRevision: "post_revision",

@@ -8,7 +8,7 @@ export type Meta = {
 };
 
 export const metaSchema: Schema<Meta> = s.object<Meta>({
-  total: s.number(),
-  limit: s.number(),
-  offset: s.number(),
+  total: s.int(),
+  limit: s.int(),
+  offset: s.int(),
 });

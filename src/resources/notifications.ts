@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   notificationsJsonResponseSchema,
@@ -27,31 +28,59 @@ export class Notifications {
     this.#servers = servers;
   }
 
-  getNotifications(options?: RequestOptions): ApiPromise<NotificationsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<NotificationsJsonResponse, ResponseError>(
+  /**
+   * Get the notifications that belong to the current user
+   *
+   * @returns notifications
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getNotifications(options?: RequestOptions): ApiPromise<NotificationsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/notifications.json"),
+        urlTemplate: this.#servers.default("/notifications.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: notificationsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Mark notifications as read
+   *
+   * @returns notifications marked read
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   markNotificationsAsRead(
     request: Notifications.MarkNotificationsAsReadRequest,
     options?: RequestOptions,
-  ): ApiPromise<NotificationsMarkReadJsonResponse, ResponseError> {
-    return this.#rawClient.execute<NotificationsMarkReadJsonResponse, ResponseError>(
+  ): ApiPromise<NotificationsMarkReadJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/notifications/mark-read.json"),
+        urlTemplate: this.#servers.default("/notifications/mark-read.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
+        headers: [{ name: "Idempotency-Key", value: uuid(), schema: s.string() }],
         body: {
           kind: "json",
           value: request.body,
@@ -60,7 +89,7 @@ export class Notifications {
       },
       {
         success: { kind: "json", schema: notificationsMarkReadJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

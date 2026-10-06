@@ -10,7 +10,7 @@ export type Data = {
 };
 
 export const dataSchema: Schema<Data> = s.object<Data>({
-  badgeId: s.optional(s.number()),
+  badgeId: s.optional(s.int()),
   badgeName: s.optional(s.string()),
   badgeSlug: s.optional(s.string()),
   badgeTitle: s.optional(s.boolean()),

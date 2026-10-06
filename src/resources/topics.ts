@@ -1,8 +1,9 @@
+import { ApiError, type Declared, type ErrorDecoders, type ErrorPayload } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError, type Declared, type ErrorDecoders } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import { latestJsonResponseSchema, type LatestJsonResponse } from "../models/latest-json-response.js";
 import { postsJsonRequestSchema, type PostsJsonRequest } from "../models/posts-json-request.js";
@@ -53,66 +54,106 @@ export class Topics {
     this.#servers = servers;
   }
 
+  /**
+   * Bookmark topic
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   bookmarkTopic(
     request: Topics.BookmarkTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  ): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/t/{id}/bookmark.json"),
+        urlTemplate: this.#servers.default("/t/{id}/bookmark.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "empty" },
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Creates a new topic, a new post, or a private message
+   *
+   * @returns post created
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createTopicPostPm(
     request: Topics.CreateTopicPostPmRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<PostsJsonResponse1, ResponseError>(
+  ): ApiPromise<PostsJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/posts.json"),
+        urlTemplate: this.#servers.default("/posts.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "json", value: request.body, schema: s.optional(s.lazy(() => postsJsonRequestSchema)) },
       },
       {
         success: { kind: "json", schema: postsJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Create topic timer
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createTopicTimer(
     request: Topics.CreateTopicTimerRequest,
     options?: RequestOptions,
-  ): ApiPromise<TTimerJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TTimerJsonResponse, ResponseError>(
+  ): ApiPromise<TTimerJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/timer.json"),
+        urlTemplate: this.#servers.default("/t/{id}/timer.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -122,22 +163,34 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tTimerJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get specific posts from a topic
+   *
+   * @returns specific posts
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getSpecificPostsFromTopic(
     request: Topics.GetSpecificPostsFromTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TPostsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TPostsJsonResponse, ResponseError>(
+  ): ApiPromise<TPostsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/t/{id}/posts.json"),
+        urlTemplate: this.#servers.default("/t/{id}/posts.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
@@ -146,22 +199,31 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tPostsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getTopic(
-    request: Topics.GetTopicRequest,
-    options?: RequestOptions,
-  ): ApiPromise<TJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TJsonResponse, ResponseError>(
+  /**
+   * Get a single topic
+   *
+   * @returns specific posts
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getTopic(request: Topics.GetTopicRequest, options?: RequestOptions): ApiPromise<TJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/t/{id}.json"),
+        urlTemplate: this.#servers.default("/t/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
@@ -170,12 +232,22 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get topic by external_id
+   *
+   * @throws {@link Topics.GetTopicByExternalIdError} when the API answers with an error status —
+   * narrow on `err.payload.kind`
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   getTopicByExternalId(
     request: Topics.GetTopicByExternalIdRequest,
     options?: RequestOptions,
@@ -183,9 +255,11 @@ export class Topics {
     return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/t/external_id/{external_id}.json"),
+        urlTemplate: this.#servers.default("/t/external_id/{external_id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "external_id", value: request.externalId, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
@@ -196,19 +270,32 @@ export class Topics {
     );
   }
 
+  /**
+   * Invite group to topic
+   *
+   * @returns invites to a PM
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   inviteGroupToTopic(
     request: Topics.InviteGroupToTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TInviteGroupJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TInviteGroupJsonResponse, ResponseError>(
+  ): ApiPromise<TInviteGroupJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/invite-group.json"),
+        urlTemplate: this.#servers.default("/t/{id}/invite-group.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -218,25 +305,38 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tInviteGroupJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Invite to topic
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   inviteToTopic(
     request: Topics.InviteToTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TInviteJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TInviteJsonResponse, ResponseError>(
+  ): ApiPromise<TInviteJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/invite.json"),
+        urlTemplate: this.#servers.default("/t/{id}/invite.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -246,25 +346,37 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tInviteJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get the latest topics
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   listLatestTopics(
     request: Topics.ListLatestTopicsRequest,
     options?: RequestOptions,
-  ): ApiPromise<LatestJsonResponse, ResponseError> {
-    return this.#rawClient.execute<LatestJsonResponse, ResponseError>(
+  ): ApiPromise<LatestJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/latest.json"),
+        urlTemplate: this.#servers.default("/latest.json"),
         auth: noneAuth,
+        pathParams: [],
         query: [
           { name: "order", value: request.order, schema: s.optional(s.string()) },
           { name: "ascending", value: request.ascending, schema: s.optional(s.string()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
@@ -274,24 +386,36 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: latestJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Get the top topics filtered by period
+   *
+   * @returns response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   listTopTopics(
     request: Topics.ListTopTopicsRequest,
     options?: RequestOptions,
-  ): ApiPromise<TopJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TopJsonResponse, ResponseError>(
+  ): ApiPromise<TopJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/top.json"),
+        urlTemplate: this.#servers.default("/top.json"),
         auth: noneAuth,
+        pathParams: [],
         query: [
           { name: "period", value: request.period, schema: s.optional(s.string()) },
-          { name: "per_page", value: request.perPage, schema: s.optional(s.number()) },
+          { name: "per_page", value: request.perPage, schema: s.optional(s.int()) },
         ],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
@@ -301,49 +425,72 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: topJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  removeTopic(
-    request: Topics.RemoveTopicRequest,
-    options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  /**
+   * Remove a topic
+   *
+   * @returns specific posts
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  removeTopic(request: Topics.RemoveTopicRequest, options?: RequestOptions): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/t/{id}.json"),
+        urlTemplate: this.#servers.default("/t/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "empty" },
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Set notification level
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   setNotificationLevel(
     request: Topics.SetNotificationLevelRequest,
     options?: RequestOptions,
-  ): ApiPromise<TNotificationsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TNotificationsJsonResponse, ResponseError>(
+  ): ApiPromise<TNotificationsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/t/{id}/notifications.json"),
+        urlTemplate: this.#servers.default("/t/{id}/notifications.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -353,49 +500,75 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tNotificationsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update a topic
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updateTopic(
     request: Topics.UpdateTopicRequest,
     options?: RequestOptions,
-  ): ApiPromise<TJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<TJsonResponse1, ResponseError>(
+  ): ApiPromise<TJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/t/-/{id}.json"),
+        urlTemplate: this.#servers.default("/t/-/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "json", value: request.body, schema: s.optional(s.lazy(() => tJsonRequestSchema)) },
       },
       {
         success: { kind: "json", schema: tJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update the status of a topic
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updateTopicStatus(
     request: Topics.UpdateTopicStatusRequest,
     options?: RequestOptions,
-  ): ApiPromise<TStatusJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TStatusJsonResponse, ResponseError>(
+  ): ApiPromise<TStatusJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/t/{id}/status.json"),
+        urlTemplate: this.#servers.default("/t/{id}/status.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -405,25 +578,38 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tStatusJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update topic timestamp
+   *
+   * @returns topic updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updateTopicTimestamp(
     request: Topics.UpdateTopicTimestampRequest,
     options?: RequestOptions,
-  ): ApiPromise<TChangeTimestampJsonResponse, ResponseError> {
-    return this.#rawClient.execute<TChangeTimestampJsonResponse, ResponseError>(
+  ): ApiPromise<TChangeTimestampJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/t/{id}/change-timestamp.json"),
+        urlTemplate: this.#servers.default("/t/{id}/change-timestamp.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -433,7 +619,7 @@ export class Topics {
       },
       {
         success: { kind: "json", schema: tChangeTimestampJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -476,7 +662,9 @@ export namespace Topics {
     externalId: string;
   };
 
-  export class GetTopicByExternalIdError extends ResponseError<Declared<"error301", undefined>> {
+  export class GetTopicByExternalIdError extends ApiError {
+    declare readonly payload: ErrorPayload<Declared<"error301", undefined>>;
+
     static readonly errors: ErrorDecoders<GetTopicByExternalIdError> = [
       { on: 301, kind: "error301", decode: { kind: "empty" } },
     ];
@@ -497,15 +685,23 @@ export namespace Topics {
   };
 
   export type ListLatestTopicsRequest = {
+    /**
+     * Enum: `default`, `created`, `activity`, `views`, `posts`, `category`, `likes`, `op_likes`,
+     * `posters`
+     */
     order?: string;
+    /** Defaults to `desc`, add `ascending=true` to sort asc */
     ascending?: string;
+    /** Maximum number of topics returned, between 1-100 */
     perPage?: number;
     apiKey: string;
     apiUsername: string;
   };
 
   export type ListTopTopicsRequest = {
+    /** Enum: `all`, `yearly`, `quarterly`, `monthly`, `weekly`, `daily` */
     period?: string;
+    /** Maximum number of topics returned, between 1-100 */
     perPage?: number;
     apiKey: string;
     apiUsername: string;

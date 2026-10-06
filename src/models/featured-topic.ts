@@ -10,11 +10,11 @@ export type FeaturedTopic = {
 };
 
 export const featuredTopicSchema: Schema<FeaturedTopic> = s.object<FeaturedTopic>({
-  id: s.number(),
+  id: s.int(),
   title: s.string(),
   fancyTitle: s.string(),
   slug: s.string(),
-  postsCount: s.number(),
+  postsCount: s.int(),
   _keysMap: {
     fancyTitle: "fancy_title",
     postsCount: "posts_count",

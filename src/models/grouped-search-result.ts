@@ -24,7 +24,7 @@ export const groupedSearchResultSchema: Schema<GroupedSearchResult> = s.object<G
   moreUsers: s.nullable(s.string()),
   moreCategories: s.nullable(s.string()),
   term: s.string(),
-  searchLogId: s.number(),
+  searchLogId: s.int(),
   moreFullPageResults: s.nullable(s.string()),
   canCreateTopic: s.boolean(),
   error: s.nullable(s.string()),

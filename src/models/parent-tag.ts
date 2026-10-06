@@ -8,7 +8,7 @@ export type ParentTag = {
 };
 
 export const parentTagSchema: Schema<ParentTag> = s.object<ParentTag>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   slug: s.string(),
 });

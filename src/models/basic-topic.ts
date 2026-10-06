@@ -10,11 +10,11 @@ export type BasicTopic = {
 };
 
 export const basicTopicSchema: Schema<BasicTopic> = s.object<BasicTopic>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   title: s.optional(s.string()),
   fancyTitle: s.optional(s.string()),
   slug: s.optional(s.string()),
-  postsCount: s.optional(s.number()),
+  postsCount: s.optional(s.int()),
   _keysMap: {
     fancyTitle: "fancy_title",
     postsCount: "posts_count",

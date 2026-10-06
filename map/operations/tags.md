@@ -4,16 +4,17 @@
 
 Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Request types: namespace `Tags`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createTagGroup
 
-- **Signature**: `createTagGroup(request: Tags.CreateTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse1, ResponseError>`
+- **Signature**: `createTagGroup(request: Tags.CreateTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse1, ApiError>`
 - **Wire**: `POST /tag_groups.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TagGroupsJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Tags.CreateTagGroupRequest` (1):
 
@@ -28,12 +29,12 @@ Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Re
 
 ### getTag
 
-- **Signature**: `getTag(request: Tags.GetTagRequest, options?: RequestOptions): ApiPromise<TagJsonResponse, ResponseError>`
+- **Signature**: `getTag(request: Tags.GetTagRequest, options?: RequestOptions): ApiPromise<TagJsonResponse, ApiError>`
 - **Wire**: `GET /tag/{name}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Tags.GetTagRequest` (1):
 
@@ -47,12 +48,12 @@ Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Re
 
 ### getTagGroup
 
-- **Signature**: `getTagGroup(request: Tags.GetTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse2, ResponseError>`
+- **Signature**: `getTagGroup(request: Tags.GetTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse2, ApiError>`
 - **Wire**: `GET /tag_groups/{id}.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagGroupsJsonResponse2`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Tags.GetTagGroupRequest` (1):
 
@@ -66,12 +67,12 @@ Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Re
 
 ### listTagGroups
 
-- **Signature**: `listTagGroups(options?: RequestOptions): ApiPromise<TagGroupsJsonResponse, ResponseError>`
+- **Signature**: `listTagGroups(options?: RequestOptions): ApiPromise<TagGroupsJsonResponse, ApiError>`
 - **Wire**: `GET /tag_groups.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagGroupsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -79,12 +80,12 @@ Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Re
 
 ### listTags
 
-- **Signature**: `listTags(options?: RequestOptions): ApiPromise<TagsJsonResponse, ResponseError>`
+- **Signature**: `listTags(options?: RequestOptions): ApiPromise<TagsJsonResponse, ApiError>`
 - **Wire**: `GET /tags.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `TagsJsonResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -92,12 +93,13 @@ Accessor: `client.tags` · Source: `src/resources/tags.ts` · 6 operations · Re
 
 ### updateTagGroup
 
-- **Signature**: `updateTagGroup(request: Tags.UpdateTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse3, ResponseError>`
+- **Signature**: `updateTagGroup(request: Tags.UpdateTagGroupRequest, options?: RequestOptions): ApiPromise<TagGroupsJsonResponse3, ApiError>`
 - **Wire**: `PUT /tag_groups/{id}.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `TagGroupsJsonResponse3`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Tags.UpdateTagGroupRequest` (2):
 

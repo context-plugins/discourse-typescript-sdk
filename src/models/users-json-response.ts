@@ -12,7 +12,7 @@ export const usersJsonResponseSchema: Schema<UsersJsonResponse> = s.object<Users
   success: s.boolean(),
   active: s.boolean(),
   message: s.string(),
-  userId: s.optional(s.number()),
+  userId: s.optional(s.int()),
   _keysMap: {
     userId: "user_id",
   },

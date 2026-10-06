@@ -14,5 +14,5 @@ export const linkCountSchema: Schema<LinkCount> = s.object<LinkCount>({
   internal: s.boolean(),
   reflection: s.boolean(),
   title: s.string(),
-  clicks: s.number(),
+  clicks: s.int(),
 });

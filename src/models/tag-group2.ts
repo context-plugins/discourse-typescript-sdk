@@ -12,7 +12,7 @@ export type TagGroup2 = {
 };
 
 export const tagGroup2Schema: Schema<TagGroup2> = s.object<TagGroup2>({
-  id: s.optional(s.number()),
+  id: s.optional(s.int()),
   name: s.optional(s.string()),
   tagNames: s.optional(s.array(s.record(s.string(), s.unknown()))),
   parentTagName: s.optional(s.array(s.record(s.string(), s.unknown()))),

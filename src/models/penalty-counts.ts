@@ -7,6 +7,6 @@ export type PenaltyCounts = {
 };
 
 export const penaltyCountsSchema: Schema<PenaltyCounts> = s.object<PenaltyCounts>({
-  silenced: s.number(),
-  suspended: s.number(),
+  silenced: s.int(),
+  suspended: s.int(),
 });

@@ -6,6 +6,7 @@ import { typeSchema, type Type } from "./type.js";
 export type UploadsGeneratePresignedPutJsonRequest = {
   type: Type;
   fileName: string;
+  /** File size should be represented in bytes. */
   fileSize: number;
   metadata?: Metadata;
 };
@@ -14,7 +15,7 @@ export const uploadsGeneratePresignedPutJsonRequestSchema: Schema<UploadsGenerat
   s.object<UploadsGeneratePresignedPutJsonRequest>({
     type: typeSchema,
     fileName: s.string(),
-    fileSize: s.number(),
+    fileSize: s.int(),
     metadata: s.optional(s.lazy(() => metadataSchema)),
     _keysMap: {
       fileName: "file_name",

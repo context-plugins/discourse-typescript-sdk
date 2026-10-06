@@ -6,6 +6,7 @@ export type UsersJsonRequest = {
   email: string;
   password: string;
   username: string;
+  /** This param requires an admin api key in the request header or it will be ignored */
   active?: boolean;
   approved?: boolean;
   userFields?: Record<string, boolean>;

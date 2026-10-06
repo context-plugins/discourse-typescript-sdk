@@ -13,7 +13,7 @@ export type Group5 = {
 };
 
 export const group5Schema: Schema<Group5> = s.object<Group5>({
-  id: s.number(),
+  id: s.int(),
   name: s.string(),
   fullName: s.optional(s.string()),
   displayName: s.optional(s.string()),

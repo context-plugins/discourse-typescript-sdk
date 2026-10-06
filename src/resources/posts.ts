@@ -1,8 +1,9 @@
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { noneAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
+import { uuid } from "../core/uuid.js";
 import * as s from "../core/validation/index.js";
 import {
   postActionsJsonRequestSchema,
@@ -42,42 +43,66 @@ export class Posts {
     this.#servers = servers;
   }
 
+  /**
+   * Creates a new topic, a new post, or a private message
+   *
+   * @returns post created
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   createTopicPostPm(
     request: Posts.CreateTopicPostPmRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsJsonResponse1, ResponseError> {
-    return this.#rawClient.execute<PostsJsonResponse1, ResponseError>(
+  ): ApiPromise<PostsJsonResponse1, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/posts.json"),
+        urlTemplate: this.#servers.default("/posts.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: { kind: "json", value: request.body, schema: s.optional(s.lazy(() => postsJsonRequestSchema)) },
       },
       {
         success: { kind: "json", schema: postsJsonResponse1Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  deletePost(
-    request: Posts.DeletePostRequest,
-    options?: RequestOptions,
-  ): ApiPromise<undefined, ResponseError> {
-    return this.#rawClient.execute<undefined, ResponseError>(
+  /**
+   * delete a single post
+   *
+   * @returns success response
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  deletePost(request: Posts.DeletePostRequest, options?: RequestOptions): ApiPromise<undefined, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "DELETE",
-        url: this.#servers.default("/posts/{id}.json"),
+        urlTemplate: this.#servers.default("/posts/{id}.json"),
         auth: noneAuth,
-        pathParams: [{ name: "id", value: request.id, schema: s.number() }],
+        pathParams: [{ name: "id", value: request.id, schema: s.int() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -87,65 +112,107 @@ export class Posts {
       },
       {
         success: { kind: "empty" },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getPost(
-    request: Posts.GetPostRequest,
-    options?: RequestOptions,
-  ): ApiPromise<PostsJsonResponse2, ResponseError> {
-    return this.#rawClient.execute<PostsJsonResponse2, ResponseError>(
+  /**
+   * Retrieve a single post
+   *
+   * @remarks
+   * This endpoint can be used to get the number of likes on a post using the `actions_summary`
+   * property in the response. `actions_summary` responses with the id of `2` signify a `like`. If
+   * there are no `actions_summary` items with the id of `2`, that means there are 0 likes. Other
+   * ids likely refer to various different flag types.
+   *
+   * @returns single reviewable post
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
+  getPost(request: Posts.GetPostRequest, options?: RequestOptions): ApiPromise<PostsJsonResponse2, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/posts/{id}.json"),
+        urlTemplate: this.#servers.default("/posts/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: postsJsonResponse2Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List latest posts across topics
+   *
+   * @returns latest posts
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   listPosts(
     request: Posts.ListPostsRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<PostsJsonResponse, ResponseError>(
+  ): ApiPromise<PostsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/posts.json"),
+        urlTemplate: this.#servers.default("/posts.json"),
         auth: noneAuth,
-        query: [{ name: "before", value: request.before, schema: s.optional(s.number()) }],
+        pathParams: [],
+        query: [{ name: "before", value: request.before, schema: s.optional(s.int()) }],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: postsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Lock a post from being edited
+   *
+   * @returns post updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   lockPost(
     request: Posts.LockPostRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsLockedJsonResponse, ResponseError> {
-    return this.#rawClient.execute<PostsLockedJsonResponse, ResponseError>(
+  ): ApiPromise<PostsLockedJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/posts/{id}/locked.json"),
+        urlTemplate: this.#servers.default("/posts/{id}/locked.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -155,24 +222,38 @@ export class Posts {
       },
       {
         success: { kind: "json", schema: postsLockedJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Like a post and other actions
+   *
+   * @returns post updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   performPostAction(
     request: Posts.PerformPostActionRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostActionsJsonResponse, ResponseError> {
-    return this.#rawClient.execute<PostActionsJsonResponse, ResponseError>(
+  ): ApiPromise<PostActionsJsonResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "POST",
-        url: this.#servers.default("/post_actions.json"),
+        urlTemplate: this.#servers.default("/post_actions.json"),
         auth: noneAuth,
+        pathParams: [],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -182,45 +263,71 @@ export class Posts {
       },
       {
         success: { kind: "json", schema: postActionsJsonResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * List replies to a post
+   *
+   * @returns post replies
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   postReplies(
     request: Posts.PostRepliesRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsRepliesJsonResponse[], ResponseError> {
-    return this.#rawClient.execute<PostsRepliesJsonResponse[], ResponseError>(
+  ): ApiPromise<PostsRepliesJsonResponse[], ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/posts/{id}/replies.json"),
+        urlTemplate: this.#servers.default("/posts/{id}/replies.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: s.array(s.lazy(() => postsRepliesJsonResponseSchema)) },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
+  /**
+   * Update a single post
+   *
+   * @returns post updated
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link DiscourseError} when no usable response was produced: a connection failure, a
+   * timeout, a body that would not decode, a value that would not encode, or a credential that
+   * could not be obtained
+   */
   updatePost(
     request: Posts.UpdatePostRequest,
     options?: RequestOptions,
-  ): ApiPromise<PostsJsonResponse3, ResponseError> {
-    return this.#rawClient.execute<PostsJsonResponse3, ResponseError>(
+  ): ApiPromise<PostsJsonResponse3, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "PUT",
-        url: this.#servers.default("/posts/{id}.json"),
+        urlTemplate: this.#servers.default("/posts/{id}.json"),
         auth: noneAuth,
         pathParams: [{ name: "id", value: request.id, schema: s.string() }],
+        query: [],
         headers: [
           { name: "Api-Key", value: request.apiKey, schema: s.string() },
           { name: "Api-Username", value: request.apiUsername, schema: s.string() },
+          { name: "Idempotency-Key", value: uuid(), schema: s.string() },
         ],
         body: {
           kind: "json",
@@ -230,7 +337,7 @@ export class Posts {
       },
       {
         success: { kind: "json", schema: postsJsonResponse3Schema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
@@ -256,6 +363,7 @@ export namespace Posts {
   };
 
   export type ListPostsRequest = {
+    /** Load posts with an id lower than this value. Useful for pagination. */
     before?: number;
   };
 

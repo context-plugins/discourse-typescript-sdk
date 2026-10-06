@@ -4,16 +4,17 @@
 
 Accessor: `client.backups` · Source: `src/resources/backups.ts` · 4 operations · Request types: namespace `Backups`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `discourse`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### createBackup
 
-- **Signature**: `createBackup(request: Backups.CreateBackupRequest, options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse1, ResponseError>`
+- **Signature**: `createBackup(request: Backups.CreateBackupRequest, options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse1, ApiError>`
 - **Wire**: `POST /admin/backups.json`
 - **Auth**: none — public; no credential is sent
-- **Request body**: `application/json` — the `body` field
+- **Request body**: `application/json` — the `body` field. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `AdminBackupsJsonResponse1`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Backups.CreateBackupRequest` (1):
 
@@ -28,12 +29,12 @@ Accessor: `client.backups` · Source: `src/resources/backups.ts` · 4 operations
 
 ### downloadBackup
 
-- **Signature**: `downloadBackup(request: Backups.DownloadBackupRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `downloadBackup(request: Backups.DownloadBackupRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `GET /admin/backups/{filename}`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Backups.DownloadBackupRequest` (2):
 
@@ -44,12 +45,12 @@ Accessor: `client.backups` · Source: `src/resources/backups.ts` · 4 operations
 
 ### getBackups
 
-- **Signature**: `getBackups(options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse[], ResponseError>`
+- **Signature**: `getBackups(options?: RequestOptions): ApiPromise<AdminBackupsJsonResponse[], ApiError>`
 - **Wire**: `GET /admin/backups.json`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `AdminBackupsJsonResponse[]` — a bare `application/json` array; the success type *is* the array, not a wrapper model
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -57,12 +58,13 @@ Accessor: `client.backups` · Source: `src/resources/backups.ts` · 4 operations
 
 ### sendDownloadBackupEmail
 
-- **Signature**: `sendDownloadBackupEmail(request: Backups.SendDownloadBackupEmailRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `sendDownloadBackupEmail(request: Backups.SendDownloadBackupEmailRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `PUT /admin/backups/{filename}`
 - **Auth**: none — public; no credential is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `DiscourseError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Backups.SendDownloadBackupEmailRequest` (1):
 

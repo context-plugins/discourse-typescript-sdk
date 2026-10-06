@@ -24,14 +24,14 @@ export type UploadsCompleteExternalUploadJsonResponse = {
 
 export const uploadsCompleteExternalUploadJsonResponseSchema: Schema<UploadsCompleteExternalUploadJsonResponse> =
   s.object<UploadsCompleteExternalUploadJsonResponse>({
-    id: s.number(),
+    id: s.int(),
     url: s.string(),
     originalFilename: s.string(),
-    filesize: s.number(),
-    width: s.number(),
-    height: s.number(),
-    thumbnailWidth: s.number(),
-    thumbnailHeight: s.number(),
+    filesize: s.int(),
+    width: s.int(),
+    height: s.int(),
+    thumbnailWidth: s.int(),
+    thumbnailHeight: s.int(),
     extension: s.string(),
     shortUrl: s.string(),
     shortPath: s.string(),

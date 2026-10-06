@@ -10,8 +10,8 @@ export type InvitesCreateMultipleJsonResponse = {
 
 export const invitesCreateMultipleJsonResponseSchema: Schema<InvitesCreateMultipleJsonResponse> =
   s.object<InvitesCreateMultipleJsonResponse>({
-    numSuccessfullyCreatedInvitations: s.optional(s.number()),
-    numFailedInvitations: s.optional(s.number()),
+    numSuccessfullyCreatedInvitations: s.optional(s.int()),
+    numFailedInvitations: s.optional(s.int()),
     failedInvitations: s.optional(s.array(s.record(s.string(), s.unknown()))),
     successfulInvitations: s.optional(s.array(s.record(s.string(), s.unknown()))),
     _keysMap: {

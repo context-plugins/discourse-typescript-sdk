@@ -18,7 +18,7 @@ export type PostActionType = {
 };
 
 export const postActionTypeSchema: Schema<PostActionType> = s.object<PostActionType>({
-  id: s.nullable(s.number()),
+  id: s.nullable(s.int()),
   nameKey: s.nullable(s.string()),
   name: s.string(),
   description: s.string(),
@@ -28,7 +28,7 @@ export const postActionTypeSchema: Schema<PostActionType> = s.object<PostActionT
   enabled: s.boolean(),
   appliesTo: s.array(s.record(s.string(), s.unknown())),
   isUsed: s.boolean(),
-  position: s.optional(s.number()),
+  position: s.optional(s.int()),
   autoActionType: s.boolean(),
   system: s.optional(s.boolean()),
   _keysMap: {

@@ -4,9 +4,13 @@ import type { Schema } from "../core/validation/schema.js";
 export type Group = {
   name: string;
   fullName?: string;
+  /** About Group */
   bioRaw?: string;
+  /** comma,separated */
   usernames?: string;
+  /** comma,separated */
   ownerUsernames?: string;
+  /** pipe|separated */
   automaticMembershipEmailDomains?: string;
   visibilityLevel?: number;
   primaryGroup?: boolean;
@@ -30,19 +34,19 @@ export const groupSchema: Schema<Group> = s.object<Group>({
   usernames: s.optional(s.string()),
   ownerUsernames: s.optional(s.string()),
   automaticMembershipEmailDomains: s.optional(s.string()),
-  visibilityLevel: s.optional(s.number()),
+  visibilityLevel: s.optional(s.int()),
   primaryGroup: s.optional(s.boolean()),
   flairIcon: s.optional(s.string()),
-  flairUploadId: s.optional(s.number()),
+  flairUploadId: s.optional(s.int()),
   flairBgColor: s.optional(s.string()),
   publicAdmission: s.optional(s.boolean()),
   publicExit: s.optional(s.boolean()),
-  defaultNotificationLevel: s.optional(s.number()),
-  mutedCategoryIds: s.optional(s.array(s.number())),
-  regularCategoryIds: s.optional(s.array(s.number())),
-  watchingCategoryIds: s.optional(s.array(s.number())),
-  trackingCategoryIds: s.optional(s.array(s.number())),
-  watchingFirstPostCategoryIds: s.optional(s.array(s.number())),
+  defaultNotificationLevel: s.optional(s.int()),
+  mutedCategoryIds: s.optional(s.array(s.int())),
+  regularCategoryIds: s.optional(s.array(s.int())),
+  watchingCategoryIds: s.optional(s.array(s.int())),
+  trackingCategoryIds: s.optional(s.array(s.int())),
+  watchingFirstPostCategoryIds: s.optional(s.array(s.int())),
   _keysMap: {
     fullName: "full_name",
     bioRaw: "bio_raw",
