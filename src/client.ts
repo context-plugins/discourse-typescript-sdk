@@ -99,7 +99,7 @@ export class DiscourseClient {
 
   constructor(options: ClientOptions = {}) {
     this.#rawClient = new RawClient({
-      ...buildCoreClientOptions(options),
+      ...buildCoreClientOptions(options, "DISCOURSE_CLIENT_LOG"),
       defaultHeaders: [
         { name: "User-Agent", value: "DiscourseClient/0.1.0 TypeScript", schema: s.string() },
         { name: "X-APIMatic-Lang", value: "TypeScript", schema: s.string() },
